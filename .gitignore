@@ -15,3 +15,6 @@ node_modules/
 # Env (на случай если добавится бэкенд)
 .env
 .env.local
+
+# Claude Code
+.claude/
