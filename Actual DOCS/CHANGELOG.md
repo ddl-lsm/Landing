@@ -12,6 +12,38 @@
 
 ---
 
+## [2.0.0] — 2026-05-10
+
+### Changed (Breaking)
+- Ребрендинг: DevHome → **SmartBuildTech**
+- Язык страницы: русский → английский (целевая аудитория: US/UK/EU)
+- Акцентный цвет: `#c77dff` (фиолетовый) → `#EEB825` (янтарный) — под палитру логотипа
+- Hero-секция: одна колонка → CSS Grid 1fr/1fr (текст слева, dashboard-мокап справа)
+- Секция услуг: 6 карточек → 4 карточки + `.card-cta` (spans 2 cols)
+- Секция «Как работает»: 5 шагов → 3 шага с нумерованными маркерами
+
+### Added
+- `LOGO/logo-dark.png` — логотип для тёмного фона (Python/Pillow, BFS flood-fill: фон → прозрачный, тёмные элементы → белые, жёлтые → `rgb(236,175,33)`, внутренние блики → белые)
+- Animated hero dashboard mockup (`float` keyframes, 5 s) — виджет умного дома
+- `pulse` CSS-анимация индикатора онлайн-статуса в мокапе
+- Секция Differentiators (`.diff-grid`, 3 пункта) — Why SmartBuildTech
+- Inline SVG иллюстрации 72×72 px во всех карточках услуг
+- Inline SVG визуалы в превью кейсов
+- CSS-переменные: `--accent-glow`, `--radius-xl`, `--surface-2`
+
+### Removed
+- Фиолетовая цветовая схема (`#c77dff / #7b61ff`)
+- Русскоязычный контент
+- Брендинг DevHome
+
+### Documentation
+- DECISION_LOG.md — ADR-003 переведён в статус «отменено» (замена цвета)
+- DECISION_LOG.md — ADR-008: English-first язык страницы
+- DECISION_LOG.md — ADR-009: подход к логотипу (существующий PNG + Python-обработка)
+- CLAUDE.md — обновлён под актуальный стек SmartBuildTech v2.0
+
+---
+
 ## [1.1.0] — 2026-05-10
 
 ### Added

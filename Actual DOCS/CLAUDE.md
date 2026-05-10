@@ -1,80 +1,96 @@
-# CLAUDE.md — Контекст для AI-ассистента
+# CLAUDE.md — Context for AI assistants
 
-Этот файл описывает проект для AI-ассистентов (Claude, Copilot и др.).
-Читай его перед любой работой с кодом.
+Read this file before touching any code.
 
-## Что это за проект
+## What this project is
 
-Одностраничный лендинг (HTML + CSS + JS, без фреймворков) для компании **DevHome** —
-услуги по разработке мобильных/веб-приложений и настройке систем умного дома.
+Single-page landing for **SmartBuildTech** — smart home automation, custom app development, AI integration.
+Target audience: US/UK/EU English-speaking market.
 
-**Цель страницы:** конвертировать посетителя в заявку через форму в секции `#contact`.
+Goal: convert visitors into contact-form submissions (`#contact`).
 
-## Ключевые файлы
+## Key files
 
-| Файл          | Назначение                                              |
-|---------------|---------------------------------------------------------|
-| `index.html`  | Вся разметка. Секции идут строго сверху вниз.           |
-| `style.css`   | Все стили. Переменные в `:root`, затем блоками по секциям. |
-| `script.js`   | Три функции: scroll nav, handleSubmit, анимации IntersectionObserver. |
+| File         | Purpose                                                         |
+|--------------|-----------------------------------------------------------------|
+| `index.html` | All markup. Sections top-to-bottom: Nav, Hero, Why, Services, Process, Cases, Tech, FAQ, Contact, Footer. |
+| `style.css`  | All styles. Variables in `:root`, then blocks per section.      |
+| `script.js`  | Scroll nav blur, IntersectionObserver animations, handleSubmit. |
+| `LOGO/logo-dark.png`   | Logo processed for dark background (see ADR-009).   |
 
-## Дизайн-система
+## Design system
 
-**Тема:** тёмная. Фон `#0d0d0f`, акцент `#c77dff` (фиолетовый).
-Менять тему — через CSS-переменные в `:root`, не хардкодить цвета.
+**Theme:** dark only. Background `#0c0c0e`, surface `#16161a`, surface-2 `#1e1e24`.
+**Accent:** `#EEB825` (R:236 G:175 B:33) — matches logo yellow exactly. Do not approximate.
+**Accent variables:** `--accent`, `--accent-2: #F5C842`, `--accent-glow: rgba(238,184,37,0.14)`.
 
-**Типографика:** Inter (Google Fonts). Размеры через `clamp()` для hero-заголовка.
+Change colors only via CSS variables in `:root` — never hardcode.
 
-**Компоненты:**
-- `.btn` / `.btn-primary` / `.btn-ghost` / `.btn-lg` — кнопки
-- `.card` / `.card-featured` / `.card-cta` — карточки услуг
-- `.section` / `.section-alt` — секции страницы
-- `.container` — центрирующая обёртка, max-width 1120px
+**Typography:** Inter (Google Fonts). Hero title via `clamp()`.
 
-## Правила при редактировании
+**Components:**
+- `.btn` / `.btn-primary` / `.btn-ghost` / `.btn-lg` — buttons
+- `.card` / `.card-featured` / `.card-cta` — service cards (`.card-cta` spans 2 grid cols)
+- `.diff-item` — differentiator items (3-col grid)
+- `.section` / `.section-alt` — page sections
+- `.container` — centring wrapper, max-width 1120px
 
-1. **Без зависимостей.** Не добавлять npm, фреймворки, библиотеки. Проект намеренно zero-dependency.
-2. **CSS-переменные.** Все новые цвета, радиусы, отступы — через переменные в `:root`.
-3. **Inline SVG для иконок.** Не подключать icon-библиотеки.
-4. **Семантический HTML.** Использовать `<section>`, `<nav>`, `<footer>`, `<details>` по назначению.
-5. **Адаптивность.** Любые новые блоки должны иметь мобильную версию. Брейкпоинты: 900px и 640px.
-6. **Форма.** `handleSubmit` в `script.js` — здесь подключать реальный бэкенд или сервис (Formspree, Telegram Bot и т.д.). Сейчас показывает success-state.
-
-## Частые задачи
-
-### Поменять акцентный цвет
-```css
-/* style.css, :root */
---accent:    #NEW_COLOR;
---accent-2:  #NEW_COLOR_2;
---accent-glow: rgba(R,G,B,0.18);
+**Logo in nav:**
+```html
+<img src="LOGO/logo-dark.png" class="logo-icon" alt="SmartBuildTech">
+<span class="logo-wordmark">
+  <span class="lw-smart">Smart</span><span class="lw-build">Build</span><span class="lw-tech">Tech</span>
+</span>
 ```
 
-### Добавить новую секцию
-1. В `index.html` — скопировать структуру существующей секции
-2. В `style.css` — добавить блок в конце файла с комментарием `/* SECTION NAME */`
-3. В nav добавить ссылку с якорем
+## Rules when editing
 
-### Подключить реальную отправку формы
+1. **Zero dependencies.** No npm, no frameworks, no CDN libraries.
+2. **CSS variables.** All new colors/radii/spacing — variables in `:root`.
+3. **Inline SVG for icons.** Do not import icon libraries.
+4. **Semantic HTML.** Use `<section>`, `<nav>`, `<footer>`, `<details>` correctly.
+5. **Responsive.** All new blocks need mobile styles. Breakpoints: 900px and 640px.
+6. **English content only.** Do not add Russian text to `index.html`.
+7. **Logo:** use `LOGO/logo-dark.png` via `<img>`. Do not recreate in SVG. See ADR-009.
+
+## Common tasks
+
+### Change accent color
+```css
+/* style.css, :root */
+--accent:      #NEW_COLOR;
+--accent-2:    #NEW_COLOR_LIGHTER;
+--accent-glow: rgba(R,G,B,0.14);
+```
+
+### Add a new section
+1. Copy an existing section structure in `index.html`
+2. Add a CSS block in `style.css` at the correct position (keep top-to-bottom section order)
+3. Add nav anchor link
+
+### Wire up real form submission
 ```js
 // script.js → handleSubmit()
-// Вариант 1: Formspree
+
+// Option 1: Formspree
 const res = await fetch('https://formspree.io/f/YOUR_ID', {
   method: 'POST', body: new FormData(form),
   headers: { Accept: 'application/json' }
 });
 
-// Вариант 2: Telegram Bot
+// Option 2: Telegram Bot
 await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
   method: 'POST',
-  body: JSON.stringify({ chat_id: CHAT_ID, text: `Новая заявка: ...` }),
+  body: JSON.stringify({ chat_id: CHAT_ID, text: `New request: ...` }),
   headers: { 'Content-Type': 'application/json' }
 });
 ```
 
-## Что НЕ делать
+## What NOT to do
 
-- Не менять структуру секций без обновления `DECISION_LOG.md`
-- Не добавлять `!important` в CSS — структура специфичности намеренно плоская
-- Не оборачивать форму в дополнительный `<div>` — `handleSubmit` заменяет `innerHTML` напрямую
-- Не удалять CSS-переменные из `:root` без поиска по всему `style.css`
+- Do not hardcode `#EEB825` outside `:root`
+- Do not add `!important` — specificity is intentionally flat
+- Do not recreate the logo in SVG — use `LOGO/logo-dark.png`
+- Do not change section order without updating `DECISION_LOG.md`
+- Do not wrap the form in an extra `<div>` — `handleSubmit` replaces `innerHTML` directly
+- Do not add Russian text

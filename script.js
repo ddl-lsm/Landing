@@ -4,7 +4,7 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
-// Smooth form submit
+// Form submit
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -15,13 +15,13 @@ function handleSubmit(e) {
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3>Заявка отправлена!</h3>
-      <p>Ответим в течение рабочего дня.<br/>Проверьте почту или мессенджер.</p>
+      <h3>Request sent!</h3>
+      <p>I'll get back to you within one business day.<br/>Check your email or Telegram.</p>
     </div>
   `;
 }
 
-// Intersection observer for subtle entrance animations
+// Entrance animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -29,11 +29,11 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.style.transform = 'translateY(0)';
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-document.querySelectorAll('.card, .case, .step, .faq-item, .tech-item').forEach(el => {
+document.querySelectorAll('.card, .case, .step, .faq-item, .tech-item, .diff-item').forEach(el => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(16px)';
+  el.style.transform = 'translateY(18px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
