@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevHome — Разработка приложений и умный дом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        DevHome
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#how">Процесс</a></li>
+        <li><a href="#cases">Проекты</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Обсудить проект</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="badge">Разработка · Автоматизация · Умный дом</div>
+      <h1 class="hero-title">
+        Технологии,<br/>
+        которые работают<br/>
+        <span class="gradient-text">за вас</span>
+      </h1>
+      <p class="hero-sub">
+        Создаём мобильные и веб-приложения, настраиваем системы умного дома.<br/>
+        От идеи до запуска — под ключ.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary btn-lg">Начать проект</a>
+        <a href="#cases" class="btn btn-ghost btn-lg">Смотреть работы</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">60+</span>
+          <span class="stat-label">Проектов сдано</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">Клиентов довольны</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">5 лет</span>
+          <span class="stat-label">На рынке</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Услуги</div>
+        <h2 class="section-title">Что мы делаем</h2>
+        <p class="section-sub">Комплексные решения для вашего бизнеса и дома</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="card card-featured">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          </div>
+          <h3>Мобильные приложения</h3>
+          <p>iOS и Android с нуля или кросс-платформа на Flutter/React Native. UI/UX-дизайн, публикация в сторах, поддержка.</p>
+          <ul class="card-list">
+            <li>Прототип за 3 дня</li>
+            <li>MVP за 4–6 недель</li>
+            <li>Push-уведомления, геолокация, платежи</li>
+          </ul>
+          <div class="card-price">от 150 000 ₽</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Веб-приложения</h3>
+          <p>SPA, PWA, корпоративные порталы, CRM-системы. React, Next.js, Node.js. Хостинг и DevOps в комплекте.</p>
+          <ul class="card-list">
+            <li>Адаптивный дизайн</li>
+            <li>SEO-оптимизация</li>
+            <li>Высокая нагрузка</li>
+          </ul>
+          <div class="card-price">от 80 000 ₽</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Умный дом</h3>
+          <p>Проектирование и монтаж систем автоматизации. Свет, климат, безопасность, управление с телефона.</p>
+          <ul class="card-list">
+            <li>Home Assistant, Apple HomeKit</li>
+            <li>KNX, Zigbee, Z-Wave, Matter</li>
+            <li>Интеграция с Алисой / Google</li>
+          </ul>
+          <div class="card-price">от 50 000 ₽</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
+          </div>
+          <h3>IoT и автоматизация</h3>
+          <p>Подключение датчиков, контроллеров, промышленного оборудования. MQTT, REST API, облачные сервисы.</p>
+          <ul class="card-list">
+            <li>Мониторинг в реальном времени</li>
+            <li>Сценарии и триггеры</li>
+            <li>Telegram-боты и уведомления</li>
+          </ul>
+          <div class="card-price">от 30 000 ₽</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>Техподдержка 24/7</h3>
+          <p>Сопровождение запущенных проектов. Мониторинг, обновления, исправление багов, масштабирование.</p>
+          <ul class="card-list">
+            <li>SLA до 2 часов на ответ</li>
+            <li>Ежемесячные отчёты</li>
+            <li>Выделенный менеджер</li>
+          </ul>
+          <div class="card-price">от 10 000 ₽/мес</div>
+        </div>
+
+        <div class="card card-cta">
+          <h3>Нет подходящего варианта?</h3>
+          <p>Опишите задачу — предложим решение и стоимость в течение одного рабочего дня.</p>
+          <a href="#contact" class="btn btn-primary">Написать нам</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Процесс</div>
+        <h2 class="section-title">Как мы работаем</h2>
+        <p class="section-sub">Прозрачно, по этапам, без сюрпризов</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Бриф и анализ</h3>
+            <p>Изучаем задачу, аудиторию, конкурентов. Фиксируем требования в документе.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Прототип и дизайн</h3>
+            <p>Wire-фреймы, кликабельный прототип, UI-кит. Согласование до старта разработки.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Разработка</h3>
+            <p>Спринты по 2 недели. Демо после каждого итерации. Доступ в Jira в реальном времени.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Тестирование и запуск</h3>
+            <p>QA, нагрузочное тестирование, публикация. Обучение команды клиента.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h3>Поддержка</h3>
+            <p>Мониторинг 24/7, обновления, новые фичи по мере роста продукта.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="section" id="cases">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Проекты</div>
+        <h2 class="section-title">Избранные работы</h2>
+        <p class="section-sub">Реальные задачи — реальные результаты</p>
+      </div>
+      <div class="cases-grid">
+
+        <div class="case">
+          <div class="case-img case-img-1">
+            <div class="case-overlay">
+              <span class="case-tag">Мобильное приложение</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <h3>Приложение для управления складом</h3>
+            <p>iOS + Android. Штрих-коды, инвентаризация, интеграция с 1С. 200+ пользователей.</p>
+            <div class="case-metrics">
+              <span>-40% время обработки</span>
+              <span>·</span>
+              <span>3 мес разработки</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-img case-img-2">
+            <div class="case-overlay">
+              <span class="case-tag">Умный дом</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <h3>Автоматизация коттеджа 600 м²</h3>
+            <p>Освещение, климат, безопасность, ворота. Home Assistant + KNX. Управление с iPhone.</p>
+            <div class="case-metrics">
+              <span>-30% расходы на электричество</span>
+              <span>·</span>
+              <span>6 недель</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-img case-img-3">
+            <div class="case-overlay">
+              <span class="case-tag">Веб-платформа</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <h3>CRM для сети клиник</h3>
+            <p>Запись пациентов, расписание врачей, телемедицина. Next.js + PostgreSQL.</p>
+            <div class="case-metrics">
+              <span>5 000+ записей/месяц</span>
+              <span>·</span>
+              <span>4 мес разработки</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Технологии</div>
+        <h2 class="section-title">Наш стек</h2>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item">React Native</div>
+        <div class="tech-item">Flutter</div>
+        <div class="tech-item">Next.js</div>
+        <div class="tech-item">Node.js</div>
+        <div class="tech-item">PostgreSQL</div>
+        <div class="tech-item">Redis</div>
+        <div class="tech-item">Home Assistant</div>
+        <div class="tech-item">KNX</div>
+        <div class="tech-item">Zigbee</div>
+        <div class="tech-item">Matter</div>
+        <div class="tech-item">Docker</div>
+        <div class="tech-item">Kubernetes</div>
+        <div class="tech-item">AWS / Yandex Cloud</div>
+        <div class="tech-item">MQTT</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Часто задают</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Сколько стоит разработка приложения?</summary>
+          <p>Зависит от функциональности и платформ. Простое приложение — от 150 000 ₽, полноценный продукт с бэкендом — от 400 000 ₽. Точную смету даём после брифа.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Как долго длится разработка?</summary>
+          <p>MVP мобильного приложения — 4–8 недель. Веб-платформа — 6–16 недель. Умный дом — от 2 недель для квартиры до 2 месяцев для коттеджа.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Работаете ли вы с уже готовыми проектами?</summary>
+          <p>Да, берём проекты на доработку, рефакторинг или поддержку. Сначала проводим аудит кода — бесплатно.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Как происходит оплата?</summary>
+          <p>Поэтапно: предоплата 30%, по 30–35% после каждого этапа. Для поддержки — ежемесячная подписка. Работаем по договору, включая самозанятых и ИП.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Можно ли интегрировать умный дом с уже установленным оборудованием?</summary>
+          <p>В большинстве случаев — да. Поддерживаем Xiaomi, Tuya, Aqara, Sonoff, Legrand, ABB и многих других. Проводим бесплатную консультацию перед проектом.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Даёте ли вы гарантию на работу?</summary>
+          <p>Да. На разработку — 12 месяцев гарантийного сопровождения. На монтаж умного дома — 24 месяца на оборудование и 12 на работы.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-contact" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="section-tag">Контакт</div>
+          <h2 class="section-title">Обсудим<br/>ваш проект</h2>
+          <p>Заполните форму — ответим в течение рабочего дня с оценкой стоимости и сроков.</p>
+          <div class="contact-details">
+            <a href="tel:+79001234567" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              +7 (900) 123-45-67
+            </a>
+            <a href="mailto:hello@devhome.ru" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              hello@devhome.ru
+            </a>
+            <a href="https://t.me/devhome" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.26l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.299z"/></svg>
+              @devhome
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Имя</label>
+              <input type="text" placeholder="Александр" required />
+            </div>
+            <div class="form-group">
+              <label>Телефон или email</label>
+              <input type="text" placeholder="+7 (900) 000-00-00" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Тип проекта</label>
+            <select>
+              <option value="">Выберите...</option>
+              <option>Мобильное приложение</option>
+              <option>Веб-приложение</option>
+              <option>Умный дом</option>
+              <option>IoT / Автоматизация</option>
+              <option>Поддержка проекта</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Расскажите о задаче</label>
+            <textarea placeholder="Опишите что нужно сделать, бюджет и сроки..." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full">Отправить заявку</button>
+          <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        DevHome
+      </a>
+      <p class="footer-copy">© 2026 DevHome. Все права защищены.</p>
+      <div class="footer-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Оферта</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
