@@ -12,6 +12,22 @@
 
 ---
 
+## [2.0.1] — 2026-05-10
+
+### Fixed
+- Деплой GitHub Pages: `index.html` возвращён в корень репозитория (ver-2 SmartBuildTech)
+
+### Changed
+- Структура репозитория: устаревшие документы теперь архивируются в `/Fossilized/` (корень), а не в `Actual DOCS/Fossilized/`
+- `Actual DOCS/README.md` упразднён: единственный README — `README.md` в корне (витрина + техническая документация)
+- Корневой `README.md` создан заново: английский, SmartBuildTech, актуальная структура проекта
+
+### Documentation
+- `Fossilized/README-v1.0.md` — архив DevHome-era README (русский)
+- `Fossilized/CLAUDE-v1.0.md` — архив AI-контекста v1.0 (DevHome)
+
+---
+
 ## [2.0.0] — 2026-05-10
 
 ### Changed (Breaking)
