@@ -14,7 +14,7 @@ Landing page for **SmartBuildTech** — remote smart-home engineering and custom
 - **Online configuration** — programming and commissioning of installed systems
 - **Voice & app integrations** — assistants, dashboards, MQTT/REST
 - **AI integration** — intelligent automation, predictive control, LLM-powered interfaces
-- **24/7 support** — monitoring, updates, scaling
+- **Ongoing support** — monitoring, updates, fast response to issues
 
 ## Supported systems
 
