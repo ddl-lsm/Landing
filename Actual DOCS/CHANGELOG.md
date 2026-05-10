@@ -12,6 +12,22 @@
 
 ---
 
+## [1.1.0] — 2026-05-10
+
+### Added
+- GitHub Actions workflow `.github/workflows/deploy.yml` — автодеплой на GitHub Pages при каждом push в `main`
+- Секрет `GH_TOKEN` добавлен в настройки репозитория
+- GitHub Pages переключён на деплой через Actions (workflow mode)
+- Живой сайт: https://ddl-lsm.github.io/Lending/
+
+### Changed
+- `README.md` — обновлена секция деплоя, добавлена структура `.github/workflows/`, ссылки на живой сайт и Actions
+
+### Added (документация)
+- `DECISION_LOG.md` — ADR-007: выбор GitHub Actions для CI/CD
+
+---
+
 ## [1.0.0] — 2026-05-10
 
 ### Added

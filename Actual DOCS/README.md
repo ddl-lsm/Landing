@@ -21,6 +21,9 @@ Landing/
 ├── style.css           # Все стили (CSS Variables + BEM-like)
 ├── script.js           # Поведение: nav scroll, анимации, форма
 ├── .gitignore
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # Автодеплой на GitHub Pages
 └── Actual DOCS/
     ├── README.md       # Этот файл — обзор проекта
     ├── CLAUDE.md       # Контекст для AI-ассистента
@@ -37,7 +40,8 @@ Landing/
 | JS          | Ванильный ES6+, без зависимостей |
 | Шрифты      | Google Fonts — Inter              |
 | Иконки      | Inline SVG                       |
-| Деплой      | Любой статик-хостинг (Nginx, Vercel, GitHub Pages) |
+| CI/CD       | GitHub Actions → GitHub Pages                    |
+| Деплой      | GitHub Pages (автоматически при push в main)      |
 
 ## Секции лендинга
 
@@ -71,14 +75,16 @@ Landing/
 
 ## Деплой
 
+Деплой автоматический — достаточно запушить в `main`.
+
 ```bash
-# GitHub Pages
 git push origin main
-# → настроить Pages на ветку main, корень /
-
-# Vercel
-npx vercel --prod
-
-# Nginx
-cp -r . /var/www/landing/
+# → GitHub Actions запускает deploy.yml
+# → сайт обновляется на https://ddl-lsm.github.io/Lending/
 ```
+
+**Ручной запуск:** GitHub → Actions → Deploy to GitHub Pages → Run workflow
+
+**Статус деплоя:** https://github.com/ddl-lsm/Lending/actions
+
+**Живой сайт:** https://ddl-lsm.github.io/Lending/
