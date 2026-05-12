@@ -12,6 +12,32 @@
 
 ---
 
+## [2.1.0] — 2026-05-12
+
+### Added
+- Универсальная контактная модалка (`ContactModal`) — открывается со всех CTA на странице; 4 способа связи: Schedule a call, Send a message, Request a callback, Leave your contact
+- Backend FastAPI + Resend (`backend/`): принимает POST `/api/contact`, отправляет уведомление на `ddl.lsm@gmail.com`, опционально — письмо-подтверждение клиенту
+- Backend задеплоен на OCI, порт 8010, проксируется через nginx на `https://book.daria.style/api/`
+- Cal.com бронирование через iframe: `cal.com/dmitrydm/time-reserving` с передачей `timezone` браузера
+- CSS: `.modal-overlay`, `.modal-box`, `.modal-box.wide`, `.cal-iframe`, стили модала
+
+### Changed
+- Все CTA «Start a project» → «Tell me more» (Hero V1/V2/V3, Nav, CTA-карточка)
+- Все кнопки-стрелки в карточках услуг → «I'm interested»
+- «Write to us» → «Tell me more»
+
+### Removed
+- Cal.com self-hosted (контейнеры `calcom`, `calcom-db` остановлены) — заменён публичным `cal.com`
+- Cal.com `embed.js` из `<head>` — iframe не требует JS-обёртки
+- Прокси nginx `book.daria.style /` → Cal.com; осталось только `/api/`
+
+### Documentation
+- ADR-010: универсальная контактная модалка
+- ADR-011: cal.com публичный вместо self-hosted
+- ADR-012: Resend + FastAPI backend для обработки формы
+
+---
+
 ## [2.0.1] — 2026-05-10
 
 ### Fixed
