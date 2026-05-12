@@ -8,7 +8,7 @@ from typing import Literal, Optional
 resend.api_key = os.environ["RESEND_API_KEY"]
 
 NOTIFY_TO   = "ddl.lsm@gmail.com"
-NOTIFY_FROM = "noreply@daria.style"
+NOTIFY_FROM = "onboarding@resend.dev"
 
 app = FastAPI()
 
