@@ -1914,7 +1914,8 @@ function ContactModal({ isOpen, onClose }) {
   const PLATFORMS = ['WhatsApp', 'Telegram', 'Zoom', 'LINE'];
 
   const openCal = () => {
-    setTimeout(onClose, 50);
+    window.open("https://book.daria.style/dmitrydm/time-reserving", "_blank", "noopener");
+    onClose();
   };
 
   const handleSubmit = async (e) => {
@@ -1970,8 +1971,6 @@ function ContactModal({ isOpen, onClose }) {
                 <p>Pick a convenient time — we'll send a calendar invite right away.</p>
                 <button
                   className="btn btn-primary btn-lg btn-arrow"
-                  data-cal-link="dmitrydm/time-reserving"
-                  data-cal-origin="https://book.daria.style"
                   onClick={openCal}
                 >
                   Open calendar
