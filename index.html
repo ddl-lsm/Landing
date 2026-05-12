@@ -934,6 +934,81 @@ img, svg { display: block; max-width: 100%; }
   .contact-form { padding: 22px; }
 }
 
+/* svc-foot arr → I'm interested button */
+.svc-foot .arr {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer; padding: 0;
+  font-size: 13px; font-weight: 500; color: var(--ink-3);
+  transition: color var(--t);
+}
+.svc-foot .arr:hover, .svc:hover .svc-foot .arr { color: var(--ink); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(10,10,12,0.78);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: mfade 0.18s ease;
+}
+@keyframes mfade { from { opacity: 0 } to { opacity: 1 } }
+.modal-box {
+  position: relative;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%; max-width: 460px;
+  max-height: 90vh; overflow-y: auto;
+  animation: mup 0.22s cubic-bezier(.22,.68,0,1.2);
+}
+@keyframes mup { from { transform: translateY(20px); opacity: 0 } to { transform: none; opacity: 1 } }
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-3); padding: 6px; border-radius: 8px;
+  transition: color var(--t), background var(--t);
+}
+.modal-close:hover { color: var(--ink); background: var(--surface-2); }
+.modal-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-3); font-size: 13px; padding: 0;
+  margin-bottom: 20px; transition: color var(--t);
+}
+.modal-back:hover { color: var(--ink); }
+.modal-eyebrow { margin-bottom: 6px; }
+.modal-title { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; margin: 0 0 4px; }
+.modal-sub { color: var(--ink-2); font-size: 14px; margin: 6px 0 24px; }
+.modal-methods { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+.modal-method {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  text-align: left;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 44px 16px 18px;
+  cursor: pointer; width: 100%;
+  transition: border-color var(--t), background var(--t);
+}
+.modal-method:hover { border-color: var(--yellow); background: var(--surface-2); }
+.modal-method strong { font-size: 15px; font-weight: 600; color: var(--ink); }
+.modal-method span { font-size: 13px; color: var(--ink-3); }
+.modal-method-arr { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--ink-3); }
+.modal-fields { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 24px; }
+.modal-schedule { text-align: center; padding: 24px 0; }
+.modal-schedule p { color: var(--ink-2); font-size: 14px; margin: 8px 0 28px; }
+.modal-success-wrap { text-align: center; padding: 32px 0; }
+.modal-success-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--yellow); color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.modal-success-wrap h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.modal-success-wrap p { color: var(--ink-2); font-size: 14px; }
+.modal-err { color: #ef4444; font-size: 13px; margin-top: 8px; text-align: center; }
+
 </style>
   <script>
     window.addEventListener('error', e => {
@@ -946,6 +1021,11 @@ img, svg { display: block; max-width: 100%; }
       50%      { transform: translate(-50%, -50%) translateY(-6px); }
     }
   </style>
+  <script>
+    (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){cal.ns[ns]=api;p(cal.ns[ns],ar);p(cal,["initNamespace",ns])}else p(cal,ar);return}p(cal,ar)}})(window,"https://book.daria.style/embed/embed.js","init");
+    Cal("init", { origin: "https://book.daria.style" });
+    Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#EEB825" } }, hideEventTypeDetails: false });
+  </script>
 </head>
 <body>
   <div id="root"></div>
@@ -1804,6 +1884,157 @@ window.SmartHomeDemo = SmartHomeDemo;
 window.HeroOrbit = HeroOrbit;
 
 
+// =========================================================
+// CONTACT MODAL
+// =========================================================
+function ContactModal({ isOpen, onClose }) {
+  const [step, setStep] = React.useState(1);
+  const [method, setMethod] = React.useState(null);
+  const [form, setForm] = React.useState({ name: '', contact: '', platform: 'WhatsApp', message: '' });
+  const [status, setStatus] = React.useState('idle');
+
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      setStep(1); setMethod(null); setStatus('idle');
+      setForm({ name: '', contact: '', platform: 'WhatsApp', message: '' });
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const METHODS = [
+    { id: 'schedule', title: 'Schedule a call',      desc: 'Pick a time — we send a calendar invite instantly' },
+    { id: 'message',  title: 'Send a message',        desc: 'We reply within one business day' },
+    { id: 'callback', title: 'Request a callback',    desc: 'We reach out on your preferred platform' },
+    { id: 'contact',  title: 'Leave your contact',    desc: 'Share your details — we get in touch when it suits you' },
+  ];
+  const PLATFORMS = ['WhatsApp', 'Telegram', 'Zoom', 'LINE'];
+
+  const openCal = () => {
+    onClose();
+    setTimeout(() => {
+      if (window.Cal) window.Cal('modal', { calLink: 'dmitrydm/time-reserving' });
+    }, 200);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch('https://book.daria.style/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ method, ...form }),
+      });
+      setStatus(res.ok ? 'success' : 'error');
+    } catch { setStatus('error'); }
+  };
+
+  const current = METHODS.find(m => m.id === method);
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+
+        {step === 1 && (
+          <>
+            <div className="eyebrow modal-eyebrow"><span className="dot"></span>Get in touch</div>
+            <h2 className="modal-title">How would you like to connect?</h2>
+            <div className="modal-methods">
+              {METHODS.map(m => (
+                <button key={m.id} className="modal-method" onClick={() => { setMethod(m.id); setStep(2); }}>
+                  <strong>{m.title}</strong>
+                  <span>{m.desc}</span>
+                  <svg className="modal-method-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <button className="modal-back" onClick={() => { setStep(1); setStatus('idle'); }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Back
+            </button>
+
+            {method === 'schedule' && (
+              <div className="modal-schedule">
+                <h2 className="modal-title">Schedule a call</h2>
+                <p>Pick a convenient time — we'll send a calendar invite right away.</p>
+                <button className="btn btn-primary btn-lg btn-arrow" onClick={openCal}>
+                  Open calendar
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            )}
+
+            {method !== 'schedule' && status !== 'success' && (
+              <form onSubmit={handleSubmit}>
+                <h2 className="modal-title">{current?.title}</h2>
+                <div className="modal-fields">
+                  <div className="fg">
+                    <label>Your name *</label>
+                    <input required placeholder="Alex" value={form.name}
+                      onChange={e => setForm({...form, name: e.target.value})} />
+                  </div>
+                  <div className="fg">
+                    <label>Email or messenger handle *</label>
+                    <input required placeholder="email@example.com or @username" value={form.contact}
+                      onChange={e => setForm({...form, contact: e.target.value})} />
+                  </div>
+                  {method === 'callback' && (
+                    <div className="fg">
+                      <label>Preferred platform</label>
+                      <select value={form.platform} onChange={e => setForm({...form, platform: e.target.value})}>
+                        {PLATFORMS.map(p => <option key={p}>{p}</option>)}
+                      </select>
+                    </div>
+                  )}
+                  {method === 'message' && (
+                    <div className="fg">
+                      <label>Message</label>
+                      <textarea rows={4} placeholder="Describe your project or question..."
+                        value={form.message} onChange={e => setForm({...form, message: e.target.value})} />
+                    </div>
+                  )}
+                </div>
+                <button type="submit" className="btn btn-primary btn-arrow" style={{ width: '100%' }}
+                  disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending…' : 'Send'}
+                  {status !== 'sending' && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>}
+                </button>
+                {status === 'error' && (
+                  <p className="modal-err">Something went wrong — please try again or email us directly.</p>
+                )}
+              </form>
+            )}
+
+            {status === 'success' && (
+              <div className="modal-success-wrap">
+                <div className="modal-success-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3>Sent!</h3>
+                <p>We'll get back to you within one business day.</p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // === app.jsx ===
 /* global React, ReactDOM, SmartHomeDemo, HeroOrbit, TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakColor, TweakToggle */
 // const { useState, useEffect, useRef } = React; // (deduped)
@@ -1824,10 +2055,10 @@ function HeroV1() {
           KNX, BACnet, Loxone, Home Assistant, Siemens LOGO and many others — anywhere in the world.
         </p>
         <div className="h-actions" data-anim>
-          <a href="#contact" className="btn btn-primary btn-lg btn-arrow">
-            Start a project
+          <button className="btn btn-primary btn-lg btn-arrow" onClick={() => window.openContactModal?.()}>
+            Tell me more
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+          </button>
           <a href="#services" className="btn btn-ghost btn-lg">What we do</a>
         </div>
 
@@ -1867,10 +2098,10 @@ function HeroV2() {
             Clear phases, no surprises in the quote.
           </p>
           <div className="h-actions">
-            <a href="#contact" className="btn btn-primary btn-lg btn-arrow">
-              Start a project
+            <button className="btn btn-primary btn-lg btn-arrow" onClick={() => window.openContactModal?.()}>
+              Tell me more
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
+            </button>
             <a href="#services" className="btn btn-ghost btn-lg">Services</a>
           </div>
           <div className="stats-row">
@@ -1912,10 +2143,10 @@ function HeroV3() {
           Click the rooms below to try it.
         </p>
         <div className="h-actions" data-anim>
-          <a href="#contact" className="btn btn-yellow btn-lg btn-arrow">
-            I want this
+          <button className="btn btn-yellow btn-lg btn-arrow" onClick={() => window.openContactModal?.()}>
+            Tell me more
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+          </button>
           <a href="#process" className="btn btn-ghost btn-lg">How we work</a>
         </div>
 
@@ -1968,9 +2199,10 @@ function Services() {
             </ul>
             <div className="svc-foot">
               <div className="price">from <b>$2,000</b></div>
-              <div className="arr">
+              <button className="arr" onClick={() => window.openContactModal?.()}>
+                I'm interested
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -1992,9 +2224,10 @@ function Services() {
             </ul>
             <div className="svc-foot">
               <div className="price">from <b>$1,200</b></div>
-              <div className="arr">
+              <button className="arr" onClick={() => window.openContactModal?.()}>
+                I'm interested
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -2016,9 +2249,10 @@ function Services() {
             </ul>
             <div className="svc-foot">
               <div className="price">from <b>$800</b></div>
-              <div className="arr">
+              <button className="arr" onClick={() => window.openContactModal?.()}>
+                I'm interested
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -2043,9 +2277,10 @@ function Services() {
             </div>
             <div className="svc-foot">
               <div className="price">from <b>$500</b></div>
-              <div className="arr">
+              <button className="arr" onClick={() => window.openContactModal?.()}>
+                I'm interested
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -2067,9 +2302,10 @@ function Services() {
             </ul>
             <div className="svc-foot">
               <div className="price">from <b>$200/mo</b></div>
-              <div className="arr">
+              <button className="arr" onClick={() => window.openContactModal?.()}>
+                I'm interested
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -2084,10 +2320,10 @@ function Services() {
               <h3>Not seeing your case?</h3>
               <p>Describe what you need — we'll come back with a solution and a quote within one business day. Free.</p>
             </div>
-            <a href="#contact" className="btn btn-primary btn-arrow" style={{ alignSelf: "flex-start" }}>
-              Write to us
+            <button className="btn btn-primary btn-arrow" style={{ alignSelf: "flex-start" }} onClick={() => window.openContactModal?.()}>
+              Tell me more
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2421,7 +2657,7 @@ function Nav() {
           <li><a href="#process">Process</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" className="btn btn-primary nav-cta">Start a project</a>
+        <button className="btn btn-primary nav-cta" onClick={() => window.openContactModal?.()}>Tell me more</button>
       </div>
     </nav>
   );
@@ -2493,6 +2729,11 @@ function Tweaks() {
 // =========================================================
 function App() {
   const [variant, setVariant] = useState("v1");
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.openContactModal = () => setModalOpen(true);
+  }, []);
 
   // entrance anim observer
   useEffect(() => {
@@ -2517,6 +2758,7 @@ function App() {
       <Contact />
       <Footer />
       <Tweaks />
+      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }
