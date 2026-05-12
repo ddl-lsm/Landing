@@ -1914,10 +1914,7 @@ function ContactModal({ isOpen, onClose }) {
   const PLATFORMS = ['WhatsApp', 'Telegram', 'Zoom', 'LINE'];
 
   const openCal = () => {
-    onClose();
-    setTimeout(() => {
-      if (window.Cal) window.Cal('modal', { calLink: 'dmitrydm/time-reserving' });
-    }, 200);
+    setTimeout(onClose, 50);
   };
 
   const handleSubmit = async (e) => {
@@ -1971,7 +1968,12 @@ function ContactModal({ isOpen, onClose }) {
               <div className="modal-schedule">
                 <h2 className="modal-title">Schedule a call</h2>
                 <p>Pick a convenient time — we'll send a calendar invite right away.</p>
-                <button className="btn btn-primary btn-lg btn-arrow" onClick={openCal}>
+                <button
+                  className="btn btn-primary btn-lg btn-arrow"
+                  data-cal-link="dmitrydm/time-reserving"
+                  data-cal-origin="https://book.daria.style"
+                  onClick={openCal}
+                >
                   Open calendar
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </button>
