@@ -3,6 +3,6 @@ services:
     build: .
     restart: always
     ports:
-      - "8002:8001"
+      - "8010:8001"
     environment:
       - RESEND_API_KEY=${RESEND_API_KEY}
