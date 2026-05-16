@@ -1,9 +1,9 @@
-# SmartBuildTech
+# KEEN·DWELL
 
-Landing page for **SmartBuildTech** — remote smart-home engineering and custom software studio.
+Landing page for **KEEN·DWELL** — remote smart-home engineering and custom software studio.
 
-**Live site:** https://ddl-lsm.github.io/Lending/
-**Deploy status:** https://github.com/ddl-lsm/Lending/actions
+**Live site:** https://keendwell.com
+**Deploy status:** https://github.com/ddl-lsm/Landing/actions
 
 ---
 
@@ -60,7 +60,7 @@ Landing/
 ├── LOGO/                   # Logo source files and processed variants
 ├── Site Versions/
 │   ├── ver-1/              # Archive: vanilla HTML/CSS/JS version
-│   └── ver-2 SmartBuildTech/  # Archive: React/JSX source components
+│   └── ver-2 KEENDWELL/  # Archive: React/JSX source components
 ├── Fossilized/             # Archived outdated documents
 └── Actual DOCS/
     ├── CLAUDE.md           # AI assistant context
@@ -77,7 +77,7 @@ Push to `main` — GitHub Actions deploys automatically.
 ```bash
 git push origin main
 # → Actions runs deploy.yml
-# → site updates at https://ddl-lsm.github.io/Lending/
+# → site updates at https://keendwell.com
 ```
 
 Manual trigger: GitHub → Actions → Deploy to GitHub Pages → Run workflow.
