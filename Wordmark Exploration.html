@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>KeenDwell — Wordmark Exploration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canvas-bg: #f0eee9;
+    --grid: rgba(0,0,0,0.04);
+    --ink: #2a251f;
+    --ink-soft: rgba(40,30,20,0.65);
+    --ink-faint: rgba(40,30,20,0.45);
+
+    --kd-bg: #0c0c0e;
+    --kd-surface: #16161a;
+    --kd-text: #F5F2EC;
+    --kd-text-muted: rgba(245,242,236,0.55);
+    --kd-text-faint: rgba(245,242,236,0.35);
+    --kd-rule: rgba(245,242,236,0.10);
+    --kd-amber: #EEB825;
+    --kd-amber-deep: #1a1407;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--canvas-bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ============ Canvas frame ============ */
+  .canvas { padding: 80px 64px 120px; max-width: 1640px; margin: 0 auto; }
+  .canvas-head { margin-bottom: 56px; max-width: 720px; }
+  .canvas-head .eyebrow {
+    font: 500 11px/1 "IBM Plex Mono", monospace;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 18px;
+  }
+  .canvas-head h1 {
+    font: 700 44px/1.05 "Manrope", sans-serif;
+    letter-spacing: -0.03em; margin: 0 0 14px;
+  }
+  .canvas-head p {
+    font: 400 16px/1.55 "Inter", sans-serif;
+    color: var(--ink-soft); margin: 0; max-width: 640px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 80px; }
+  .section-head { margin-bottom: 28px; display: flex; align-items: baseline; gap: 16px; }
+  .section-head .num {
+    font: 500 11px/1 "IBM Plex Mono", monospace;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faint); flex-shrink: 0;
+  }
+  .section-head h2 {
+    font: 600 22px/1.2 "Manrope", sans-serif;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .section-head .sub {
+    font: 400 14px/1.5 "Inter", sans-serif;
+    color: var(--ink-soft); margin-left: auto; max-width: 560px; text-align: right;
+  }
+
+  /* Artboard grid */
+  .grid { display: grid; gap: 28px; }
+  .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  /* Artboard */
+  .ab { position: relative; display: flex; flex-direction: column; }
+  .ab-label {
+    font: 500 11px/1 "IBM Plex Mono", monospace;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 10px; padding: 0 4px;
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .ab-label .size { color: var(--ink-faint); font-weight: 400; }
+  .ab-frame {
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 18px 40px -16px rgba(0,0,0,0.08);
+    background: var(--kd-bg); position: relative;
+    display: flex; flex-direction: column;
+  }
+
+  /* Surfaces */
+  .surf-dark   { background: var(--kd-bg);    color: var(--kd-text); }
+  .surf-amber  { background: var(--kd-amber); color: var(--kd-amber-deep); }
+  .surf-cream  { background: var(--kd-text);  color: var(--kd-amber-deep); }
+  .surf-surface{ background: var(--kd-surface); color: var(--kd-text); }
+
+  .stage {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 36px 28px; min-height: 240px;
+  }
+  .meta {
+    border-top: 1px solid var(--kd-rule);
+    padding: 12px 18px;
+    font: 500 10.5px/1.45 "IBM Plex Mono", monospace;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--kd-text-muted);
+    display: flex; justify-content: space-between; gap: 12px; flex-shrink: 0;
+  }
+  .surf-cream .meta, .surf-amber .meta {
+    border-top-color: rgba(26,20,7,0.10);
+    color: rgba(26,20,7,0.6);
+  }
+  .meta b { color: var(--kd-text); font-weight: 600; }
+  .surf-cream .meta b, .surf-amber .meta b { color: var(--kd-amber-deep); }
+
+  /* ============ Wordmark directions ============ */
+  .wm-01 { font-family: "Manrope", sans-serif; font-weight: 800;
+           font-size: 64px; letter-spacing: -0.045em; color: var(--kd-text); }
+  .wm-01 .dot { color: var(--kd-amber); }
+
+  .wm-02 { font-family: "Instrument Serif", serif; font-style: italic;
+           font-weight: 400; font-size: 80px; letter-spacing: -0.015em;
+           line-height: 0.9; color: var(--kd-text); }
+  .wm-02 .accent { color: var(--kd-amber); }
+
+  .wm-03 { font-family: "Space Grotesk", sans-serif; font-weight: 500;
+           font-size: 54px; letter-spacing: -0.02em;
+           display: flex; align-items: center; gap: 0.35em;
+           color: var(--kd-text); }
+  .wm-03 .div { display: inline-block; width: 6px; height: 6px;
+                background: var(--kd-amber); border-radius: 50%; }
+
+  .wm-04 { font-family: "IBM Plex Mono", monospace; font-weight: 600;
+           font-size: 36px; letter-spacing: -0.01em;
+           text-transform: lowercase; color: var(--kd-text); }
+  .wm-04 .bracket { color: var(--kd-amber); }
+
+  .wm-05 { font-family: "IBM Plex Sans", sans-serif; font-weight: 600;
+           font-size: 44px; letter-spacing: 0.18em; text-transform: uppercase;
+           line-height: 1.0; text-align: center; color: var(--kd-text); }
+  .wm-05 .rule { display: block; height: 1px; width: 60%; margin: 14px auto;
+                 background: var(--kd-amber); opacity: 0.85; }
+
+  .wm-06 { font-family: "Fraunces", serif;
+           font-variation-settings: "opsz" 144, "SOFT" 30;
+           font-weight: 700; font-size: 64px;
+           letter-spacing: -0.025em; line-height: 0.95;
+           color: var(--kd-text); }
+  .wm-06 .accent { color: var(--kd-amber); }
+
+  /* ============ Monograms ============ */
+  .mono-01 { font-family: "Manrope", sans-serif; font-weight: 800;
+             font-size: 120px; letter-spacing: -0.08em; color: var(--kd-amber); }
+  .mono-02 { width: 160px; height: 160px; border-radius: 24px;
+             background: var(--kd-amber); color: var(--kd-amber-deep);
+             display: flex; align-items: center; justify-content: center;
+             font-family: "IBM Plex Sans", sans-serif; font-weight: 700;
+             font-size: 84px; letter-spacing: -0.04em; }
+  .mono-03 { width: 160px; height: 160px; border-radius: 50%;
+             background: transparent; color: var(--kd-amber);
+             border: 3px solid var(--kd-amber);
+             display: flex; align-items: center; justify-content: center;
+             font-family: "Instrument Serif", serif; font-style: italic;
+             font-weight: 400; font-size: 96px; letter-spacing: -0.04em;
+             padding-right: 6px; }
+  .mono-04 { display: grid; grid-template-columns: 1fr 1fr;
+             width: 180px; height: 180px;
+             font-family: "IBM Plex Sans", sans-serif; font-weight: 700;
+             font-size: 90px; letter-spacing: -0.04em; }
+  .mono-04 .cell { display: flex; align-items: center; justify-content: center; }
+  .mono-04 .k { background: var(--kd-amber); color: var(--kd-amber-deep); }
+  .mono-04 .d { background: var(--kd-surface); color: var(--kd-text); }
+
+  /* ============ Lockups ============ */
+  .lockup { display: flex; align-items: center; gap: 16px; }
+  .lockup-text { font-family: "Manrope", sans-serif; font-weight: 800;
+                 font-size: 34px; letter-spacing: -0.04em; color: var(--kd-text); }
+  .existing-symbol {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--kd-amber); display: flex; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+  }
+  .existing-symbol::after {
+    content: ""; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--kd-amber-deep);
+  }
+  .placeholder-note {
+    position: absolute; bottom: 56px; left: 22px;
+    font: 500 9.5px/1.3 "IBM Plex Mono", monospace; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--kd-text-faint);
+  }
+
+  /* ============ Applications ============ */
+  .hero-mock { display: flex; flex-direction: column; gap: 4px;
+               width: 100%; max-width: 540px; }
+  .hero-mock .nav { display: flex; align-items: center; justify-content: space-between;
+                    font: 500 12px/1 "Inter", sans-serif; color: var(--kd-text-muted); }
+  .hero-mock .nav-right { display: flex; gap: 18px; }
+  .hero-mock h1 { font: 700 38px/1.05 "Manrope", sans-serif;
+                  letter-spacing: -0.03em; color: var(--kd-text);
+                  margin: 14px 0 0; text-wrap: balance; }
+  .hero-mock h1 em { font-style: normal; color: var(--kd-amber); }
+  .hero-mock p { font: 400 14px/1.55 "Inter", sans-serif;
+                 color: var(--kd-text-muted); margin: 14px 0 0; max-width: 420px; }
+  .hero-mock .cta { margin-top: 18px; align-self: flex-start;
+                    font: 600 13px/1 "Inter", sans-serif;
+                    background: var(--kd-amber); color: var(--kd-amber-deep);
+                    border: none; padding: 12px 18px; border-radius: 8px; cursor: pointer; }
+
+  .app-tab { display: flex; align-items: center; width: 100%; max-width: 320px;
+             background: #2a2a30; border-radius: 8px 8px 0 0; padding: 8px 12px; }
+  .app-tab .fav { width: 16px; height: 16px; background: var(--kd-amber);
+                  border-radius: 3px; display: flex; align-items: center; justify-content: center;
+                  font: 800 10px/1 "IBM Plex Sans", sans-serif; color: var(--kd-amber-deep); }
+  .app-tab .title { font: 500 12px/1 "Inter", sans-serif; color: var(--kd-text);
+                    margin-left: 8px; opacity: 0.85; }
+
+  .app-icon { width: 96px; height: 96px; border-radius: 22px; background: var(--kd-amber);
+              display: flex; align-items: center; justify-content: center;
+              font: 800 56px/1 "IBM Plex Sans", sans-serif; color: var(--kd-amber-deep);
+              letter-spacing: -0.04em; box-shadow: 0 18px 40px -8px rgba(238,184,37,0.35); }
+
+  .bcard { width: 280px; height: 168px; border-radius: 10px; padding: 18px;
+           display: flex; flex-direction: column; justify-content: space-between;
+           box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+  .bcard .top { display: flex; align-items: center; gap: 10px; }
+  .bcard .top .sym { width: 24px; height: 24px; background: var(--kd-amber); border-radius: 5px;
+                     display: flex; align-items: center; justify-content: center;
+                     font: 700 13px/1 "IBM Plex Sans", sans-serif;
+                     color: var(--kd-amber-deep); letter-spacing: -0.04em; }
+  .bcard .top .wm { font: 700 18px/1 "Manrope", sans-serif; letter-spacing: -0.04em; }
+  .bcard .bcard-meta { font: 500 10px/1.4 "IBM Plex Mono", monospace; letter-spacing: 0.04em;
+                       text-transform: uppercase; opacity: 0.6; }
+  .bcard .name { font: 600 14px/1.2 "Inter", sans-serif; }
+  .bcard .role { font: 400 11px/1.2 "Inter", sans-serif; opacity: 0.65; margin-top: 2px; }
+
+  .email-sig { padding: 18px 22px; font-family: "Inter", sans-serif;
+               color: var(--kd-amber-deep); width: 100%; }
+  .email-sig .row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .email-sig .wm { font: 700 18px/1 "Manrope", sans-serif; letter-spacing: -0.03em; }
+  .email-sig .name { font-size: 14px; font-weight: 600; }
+  .email-sig .role { font-size: 12px; opacity: 0.65; margin-top: 2px; }
+  .email-sig .links { font: 500 11px/1.4 "IBM Plex Mono", monospace;
+                      letter-spacing: 0.04em; text-transform: uppercase;
+                      opacity: 0.55; margin-top: 14px; }
+
+  /* ============ Recommendation panel ============ */
+  .reco {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 18px 40px -16px rgba(0,0,0,0.10);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+  }
+  .reco h3 { font: 600 18px/1.3 "Manrope", sans-serif; margin: 0 0 12px;
+             letter-spacing: -0.015em; }
+  .reco p { font: 400 14px/1.6 "Inter", sans-serif; color: var(--ink-soft); margin: 0 0 10px; }
+  .reco ul { font: 400 14px/1.65 "Inter", sans-serif; color: var(--ink-soft);
+             margin: 0; padding-left: 18px; }
+  .reco ul li { margin-bottom: 6px; }
+  .reco .pick {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--kd-amber); color: var(--kd-amber-deep);
+    padding: 4px 10px; border-radius: 999px;
+    font: 600 11px/1 "IBM Plex Mono", monospace; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-right: 6px;
+  }
+  .reco .alt {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--canvas-bg); color: var(--ink-soft);
+    padding: 4px 10px; border-radius: 999px;
+    font: 500 11px/1 "IBM Plex Mono", monospace; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-right: 6px;
+  }
+
+  @media (max-width: 1100px) {
+    .grid.cols-3, .grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .section-head { flex-direction: column; align-items: flex-start; }
+    .section-head .sub { margin-left: 0; text-align: left; }
+    .reco { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .canvas { padding: 40px 24px 80px; }
+    .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main class="canvas">
+
+  <header class="canvas-head">
+    <div class="eyebrow">KeenDwell · Brand · v1</div>
+    <h1>Wordmark exploration</h1>
+    <p>Six typographic directions on the locked brand surface (dark <code>#0c0c0e</code>, amber <code>#EEB825</code>). Plus monograms, lockups with the existing amber symbol, and applied surfaces. The existing logo PNG is rendered as a neutral amber-tile placeholder — never recreated in SVG.</p>
+  </header>
+
+  <!-- ===================== 01 WORDMARKS ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">01</span>
+      <h2>Wordmark — direction studies</h2>
+      <div class="sub">Each board names typeface, intent, and where it would live in the brand system.</div>
+    </div>
+    <div class="grid cols-3">
+
+      <div class="ab">
+        <div class="ab-label"><span>01 · Geometric Modern</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-01">keendwell<span class="dot">.</span></div></div>
+          <div class="meta"><span><b>Manrope 800</b> · Geometric confidence</span><span>Default · Nav · Hero</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>02 · Editorial Serif Italic</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-02">Keen<span class="accent">D</span>well</div></div>
+          <div class="meta"><span><b>Instrument Serif Italic</b> · Dwell-adjacent</span><span>Editorial · Cases</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>03 · Mid-Dot Divider</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-03"><span>keen</span><span class="div"></span><span>dwell</span></div></div>
+          <div class="meta"><span><b>Space Grotesk 500</b> · Two halves equal</span><span>Footer · Docs</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>04 · Engineering Mono</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-04"><span class="bracket">&gt;</span> keendwell<span class="bracket">_</span></div></div>
+          <div class="meta"><span><b>IBM Plex Mono 600</b> · Engineering register</span><span>Specs · API</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>05 · Stacked Letterspaced</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-05"><div>KEEN</div><span class="rule"></span><div>DWELL</div></div></div>
+          <div class="meta"><span><b>IBM Plex Sans 600</b> · Editorial calm</span><span>Print · Posters</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>06 · Hybrid Display Serif</span><span class="size">520 × 320</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="wm-06">Keen<span class="accent">Dwell</span></div></div>
+          <div class="meta"><span><b>Fraunces 700</b> · Serif warmth + bite</span><span>Marketing · Headers</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 02 MONOGRAMS ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>Monograms — KD</h2>
+      <div class="sub">Compact mark for favicon, social avatar, app icon, contract stamp. Four approaches.</div>
+    </div>
+    <div class="grid cols-4">
+
+      <div class="ab">
+        <div class="ab-label"><span>A · Tight Letterforms</span><span class="size">340 × 340</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="mono-01">KD</div></div>
+          <div class="meta"><span><b>Manrope 800</b> · Letters touching</span><span>Watermark</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>B · Filled Tile</span><span class="size">340 × 340</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="mono-02">KD</div></div>
+          <div class="meta"><span><b>Plex Sans 700</b> · Amber tile</span><span>App icon · Avatar</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>C · Outlined Disc</span><span class="size">340 × 340</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="mono-03">K<span style="opacity:0.85">d</span></div></div>
+          <div class="meta"><span><b>Instrument Serif</b> · Stamp footprint</span><span>Document · Signature</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>D · Split Halves</span><span class="size">340 × 340</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage">
+            <div class="mono-04">
+              <div class="cell k">K</div>
+              <div class="cell d">D</div>
+              <div class="cell d">D</div>
+              <div class="cell k">K</div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Plex Sans 700</b> · Two registers</span><span>Editorial · Posters</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 03 LOCKUPS ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Lockups — symbol + wordmark</h2>
+      <div class="sub">Existing amber symbol (placeholder shown) sits next to the wordmark with consistent clear-space. Three arrangements.</div>
+    </div>
+    <div class="grid cols-3">
+
+      <div class="ab">
+        <div class="ab-label"><span>A · Horizontal</span><span class="size">620 × 260</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage">
+            <div class="lockup">
+              <div class="existing-symbol"></div>
+              <div class="lockup-text">keendwell</div>
+            </div>
+            <span class="placeholder-note">[ placeholder · uses LOGO/logo-dark.png in prod ]</span>
+          </div>
+          <div class="meta"><span><b>Manrope 800 + symbol</b></span><span>Nav · Footer · Email</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>B · Stacked Vertical</span><span class="size">620 × 260</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+              <div class="existing-symbol" style="width:38px;height:38px;border-radius:8px"></div>
+              <div class="lockup-text" style="font-size:28px">keendwell</div>
+              <div style="font:500 10px/1 'IBM Plex Mono', monospace; letter-spacing:0.18em; text-transform:uppercase; color:var(--kd-text-faint); margin-top:4px">
+                Remote engineering studio
+              </div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Manrope 700 + symbol</b></span><span>Cards · Stories</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>C · Mark-Only</span><span class="size">620 × 260</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="existing-symbol" style="width:88px;height:88px;border-radius:18px"></div></div>
+          <div class="meta"><span><b>Symbol alone</b></span><span>GitHub · Watermark</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 04 APPLICATIONS ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>Applications — in context</h2>
+      <div class="sub">How direction 01 (Manrope) lives across surfaces. Swap in the picked direction once decided.</div>
+    </div>
+
+    <div class="grid cols-2" style="margin-bottom:28px">
+      <div class="ab">
+        <div class="ab-label"><span>Hero · landing page</span><span class="size">keendwell.com</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage" style="padding:36px 40px;align-items:flex-start;justify-content:flex-start">
+            <div class="hero-mock">
+              <div class="nav">
+                <div class="lockup">
+                  <div class="existing-symbol" style="width:26px;height:26px;border-radius:6px"></div>
+                  <div style="font:700 16px/1 Manrope, sans-serif;letter-spacing:-0.03em;color:var(--kd-text)">keendwell</div>
+                </div>
+                <div class="nav-right">
+                  <span>Why</span><span>Services</span><span>Process</span><span>Contact</span>
+                </div>
+              </div>
+              <h1>Sharp homes.<br><em>Quietly engineered.</em></h1>
+              <p>Smart-home design, programming and commissioning — delivered remotely. KNX · Loxone · BACnet · Home Assistant · Siemens LOGO. No site visit required.</p>
+              <button class="cta">Plan my home — free 30 min →</button>
+            </div>
+          </div>
+          <div class="meta"><span><b>Manrope + Inter body</b></span><span>Production hero</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>App icon · 96×96</span><span class="size">@keendwell</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage"><div class="app-icon">KD</div></div>
+          <div class="meta"><span><b>Plex Sans 800</b></span><span>iOS · Android · Social</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid cols-3" style="margin-bottom:28px">
+      <div class="ab">
+        <div class="ab-label"><span>Browser tab</span><span class="size">16×16</span></div>
+        <div class="ab-frame surf-dark">
+          <div class="stage" style="align-items:flex-end">
+            <div class="app-tab">
+              <div class="fav">K</div>
+              <div class="title">KeenDwell — Remote engineering studio</div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Favicon</b></span><span>PWA · Browser</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>Business card · front</span><span class="size">280 × 168</span></div>
+        <div class="ab-frame surf-cream">
+          <div class="stage">
+            <div class="bcard surf-cream">
+              <div class="top">
+                <div class="sym">KD</div>
+                <div class="wm">keendwell</div>
+              </div>
+              <div>
+                <div class="name">Dmitry — Principal Engineer</div>
+                <div class="role">Remote smart-home & custom software</div>
+              </div>
+              <div class="bcard-meta">keendwell.com · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8cbcccddcd1d7f8d3ddddd6dccfddd4d496dbd7d5">[email&#160;protected]</a></div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Manrope + Inter + Plex Mono</b></span><span>Print · PDF</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>Business card · back</span><span class="size">280 × 168</span></div>
+        <div class="ab-frame surf-amber">
+          <div class="stage">
+            <div class="bcard surf-amber" style="align-items:center;justify-content:center">
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:64px;letter-spacing:-0.04em;line-height:1">KD</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.7;margin-top:10px">
+                Sharp homes · quietly engineered
+              </div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Brand-led reverse</b></span><span>Print · PDF</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="ab">
+        <div class="ab-label"><span>Email signature</span><span class="size">Outbound mail</span></div>
+        <div class="ab-frame surf-cream">
+          <div class="stage" style="justify-content:flex-start;align-items:flex-start">
+            <div class="email-sig">
+              <div class="row">
+                <div class="existing-symbol" style="width:32px;height:32px;border-radius:7px"></div>
+                <div class="wm">keendwell</div>
+              </div>
+              <div class="name">Dmitry — Principal Engineer</div>
+              <div class="role">Remote smart-home &amp; custom software</div>
+              <div class="links">keendwell.com  ·  <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="16656263727f79567d7373787261737a7a3875797b">[email&#160;protected]</a>  ·  Book a call ↗</div>
+            </div>
+          </div>
+          <div class="meta"><span><b>Inter HTML signature</b></span><span>Resend · Gmail</span></div>
+        </div>
+      </div>
+
+      <div class="ab">
+        <div class="ab-label"><span>Social avatar</span><span class="size">400 × 400</span></div>
+        <div class="ab-frame surf-amber">
+          <div class="stage">
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:140px;letter-spacing:-0.06em;line-height:1;color:var(--kd-amber-deep)">KD</div>
+          </div>
+          <div class="meta"><span><b>Plex Sans 700 · amber</b></span><span>X · LinkedIn · IG</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================== 05 RECOMMENDATION ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">05</span>
+      <h2>Reading — recommendation</h2>
+      <div class="sub">What I'd ship and why. The rest stay as named alternates we can swap into context.</div>
+    </div>
+    <div class="reco">
+      <div>
+        <h3>Lead pair</h3>
+        <p style="margin-bottom:16px">
+          <span class="pick">Wordmark 01</span> Manrope ExtraBold lowercase
+        </p>
+        <p style="margin-bottom:16px">
+          <span class="pick">Monogram B</span> Filled amber tile
+        </p>
+        <p>
+          Geometric, modern, confident — sharp like <em>keen</em>, calm like <em>dwell</em>. Sits cleanly next to the existing amber symbol without competing. Reads at 14px in the nav and at 24px on a business card. The monogram works as favicon, app icon, social avatar without modification.
+        </p>
+      </div>
+      <div>
+        <h3>Named alternates</h3>
+        <ul>
+          <li><span class="alt">02</span><strong>Instrument Serif Italic</strong> — for case-study covers and long-form editorial. Plays the Dwell-magazine adjacency.</li>
+          <li><span class="alt">04</span><strong>IBM Plex Mono</strong> — reserved for code, specs, BOM tables and API surfaces only. Never the primary wordmark.</li>
+          <li><span class="alt">05</span><strong>Stacked uppercase</strong> — print covers, posters, foil-stamped folios. One-off applications.</li>
+          <li><span class="alt">06</span><strong>Fraunces hybrid</strong> — premium marketing collateral when we need warmth without breaking the system.</li>
+          <li><span class="alt">03</span><strong>Mid-dot Space Grotesk</strong> — secondary contexts, footer-scale typography.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top:64px;padding-top:32px;border-top:1px solid rgba(0,0,0,0.08);font:500 11px/1 'IBM Plex Mono', monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);display:flex;justify-content:space-between">
+    <span>KeenDwell · Brand exploration · 2026-05-15</span>
+    <span>v1 · pre-decision</span>
+  </footer>
+
+</main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
