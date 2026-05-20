@@ -10,6 +10,62 @@
 
 > Сюда идут изменения, которые ещё не вышли в релиз.
 
+- `index.html`: переписать wordmark с устаревшего `Smart/Build/Tech` (три спана) на двухчастный `KEEN·DWELL` (с классами `.lw-keen` / `.lw-dot` / `.lw-dwell`); обновить `<title>`, мета-теги, OG/Twitter, alt-текст логотипа, footer copyright
+- `Wordmark Exploration.html`: финальный typographic treatment (typeface, weight, kerning, KD-монограмма) - после выбора обновить `BRAND_KEENDWELL.md` §3 и эталон в `Actual DOCS/CLAUDE.md`. Текстовая форма бренда от этого не меняется (всегда `KEEN·DWELL`)
+- Cal.com slug `time-reserving` -> `intro-call` или `discovery` (см. `BRANDING_ROLLOUT_PLAN.md` Phase 0)
+- Resend: верифицировать домен `keendwell.com` в Resend, заменить отправителя `onboarding@resend.dev` -> `studio@keendwell.com` или `hello@keendwell.com` (см. `BRANDING_ROLLOUT_PLAN.md` Phase 0)
+- Backend-эндпоинт: миграция `book.daria.style/api/` на поддомен keendwell.com (например, `api.keendwell.com`)
+- ICP statement: сформулировать одно предложение (homeowner mid-build vs architect vs existing-system owner) и зафиксировать в `BRAND_KEENDWELL.md` §4 или отдельным ADR
+
+---
+
+## [3.0.0] - 2026-05-20
+
+### Changed (Breaking)
+- Бренд: SmartBuildTech -> **`KEEN·DWELL`** (uppercase + middle dot U+00B7, без пробелов вокруг точки). Это каноническое написание во всех user-visible контекстах: копирайт, заголовки, page titles, мета-теги, OG/Twitter, email, документация
+- Технический идентификатор бренда (URL, домены, email, социальные хэндлы, code identifiers): `keendwell` (lowercase, без разделителя)
+- Домен: production landing на <https://keendwell.com> (сейчас заглушка «coming soon»), dev/staging на <https://dev.keendwell.com>
+- Прежнее имя SmartBuildTech остаётся только в исторических путях (`Site Versions/ver-2 SmartBuildTech/`, `Fossilized/`) - в живой код, копирайтинг и markup не возвращается
+- Запрещены формы написания: `KeenDwell`, `Keendwell`, `keenDwell`, `Keen Dwell`, `KEEN DWELL` (с пробелом), `Keen-Dwell`, `KEEN-DWELL`, `Keen.Dwell`, `keen dwell`, `KD` как standalone wordmark, `K·D`. Полный список и обоснование - ADR-013
+
+### Added (документы и решения)
+- **`BRAND_KEENDWELL.md`** в корне репо - Brand Bible: семантика имени (Keen + Dwell во всех регистрах, включая инженерное «dwell time»), фонетика, визуально-типографические факты, позиционирование, voice & tone, риски, окружающие TM. Каноническая текстовая форма `KEEN·DWELL` зафиксирована в шапке и §3
+- **`BRANDING_ROLLOUT_PLAN.md`** в корне репо - операционный чек-лист в 6 фаз: Lock & defend / Brand kit / Site relaunch / Outbound surfaces / SEO / Case studies + бюджет
+- **`TRADEMARK_RESEARCH.md`** в корне репо - предварительный TM-скан: композит KEEN·DWELL чист в первом проходе; рекомендации по защитным доменам, USPTO/EUIPO, attorney clearance, фокус на KEEN Home Inc. (class 9)
+- **`Brand Messaging KeenDwell.md`** в корне репо - рабочий набор messaging-направлений в четырёх регистрах (Global Expert / Value / Lifestyle / Action). Имя файла сохранено для git history continuity; контент использует `KEEN·DWELL`
+- **`Wordmark Exploration.html`** в корне репо - интерактивный exploration **типографической** обработки строки `KEEN·DWELL` и KD-монограммы. Exploration не пересматривает текстовую форму бренда
+- **ADR-013** (`Actual DOCS/DECISION_LOG.md`): брендинг `KEEN·DWELL`. Каноническая форма для копирайта - `KEEN·DWELL`; для технических идентификаторов - `keendwell` lowercase; список запрещённых форм; домены production и dev/staging; визуальный wordmark exploration касается только типографики, не текста
+- **ADR-014** (`Actual DOCS/DECISION_LOG.md`): единый социальный хэндл `@keendwell` на Facebook, X (Twitter), Instagram, LinkedIn Company, YouTube (регистрация в процессе). Платформы второй волны (GitHub org, Behance, Dribbble, Threads и т.д.) - отдельным решением
+- `Fossilized/PROJECT_BRIEF-v1.0.md` - архив межсессионного брифа эпохи SmartBuildTech, с заголовком-пояснением; нейминговая воронка (§6) закрыта Brand Bible, маркетинговая критика прода (§5) и user-voice-паттерны (§7) сохраняются как живой контекст
+
+### Changed (документация)
+- **`Actual DOCS/CLAUDE.md` бамп v1.1.0 -> v1.3.1:**
+  - Раздел Brand переписан как одно простое утверждение: бренд = `KEEN·DWELL` в копирайте, `keendwell` lowercase - только в URL/хэндлах/коде. Список запрещённых форм. Domains. Социальный хэндл. Retired (SmartBuildTech)
+  - Добавлен раздел «Documentation index» - три локации (`Actual DOCS/`, root, `Fossilized/`) + `memory/`, с ролью каждого файла
+  - Добавлены планируемые text-токены из `BRANDING_ROLLOUT_PLAN.md` §1.3 (`--text`, `--text-muted`, `--text-faint`, `--rule`)
+  - Обновлён эталон wordmark-разметки в навигации (`KEEN·DWELL` спанами с `.lw-keen` / `.lw-dot` / `.lw-dwell`)
+  - Расширены «Rules when editing»: правило 8 - бренд-стринг (две канонические формы, всё остальное запрещено), правило 9 - voice & tone из Brand Bible §5
+  - Расширен «What NOT to do»: запрет правок Brand Bible / rollout / TM research без bump «Last updated» + CHANGELOG; запрет промо tagline-кандидатов до выбора пользователем; явный запрет неканонических форм бренда
+- `BRAND_KEENDWELL.md`: шапка обновлена под актуальный статус (canonical text form `KEEN·DWELL` залочен, exploration в `Wordmark Exploration.html` касается только typography, dev/staging адрес, социальный хэндл, ссылка на ADR-013/014, дата 2026-05-20). §3 «Lockup considerations» содержит явный forbidden-forms-список. §7 «Risks» обновлена: устаревшая строка про CamelCase убрана
+- `BRAND_KEENDWELL.md`, `BRANDING_ROLLOUT_PLAN.md`, `TRADEMARK_RESEARCH.md`, `Brand Messaging KeenDwell.md`: все упоминания бренда в контенте переписаны на `KEEN·DWELL`; ссылки на `PROJECT_BRIEF.md` обновлены на `Fossilized/PROJECT_BRIEF-v1.0.md`
+- `README.md` переписан под `KEEN·DWELL`: ссылки на keendwell.com и dev.keendwell.com, обновлённая структура репо (новые брендовые документы в корне, `Fossilized/PROJECT_BRIEF-v1.0.md`), индекс документации с ролями, roadmap
+
+### Removed
+- `PROJECT_BRIEF.md` из корня репозитория - перенесён в `Fossilized/PROJECT_BRIEF-v1.0.md`. Актуальное состояние теперь распределено: бренд - `BRAND_KEENDWELL.md`; роллаут - `BRANDING_ROLLOUT_PLAN.md`; TM - `TRADEMARK_RESEARCH.md`; правила и индекс - `Actual DOCS/CLAUDE.md` (v1.3.1); архитектурные решения - `Actual DOCS/DECISION_LOG.md`
+
+### Versioning rationale
+- По SemVer ребрендинг квалифицируется как MAJOR (аналогично переходу DevHome -> SmartBuildTech в 2.0.0). Новый цикл начинается с 3.0.0
+- `CLAUDE.md` версионируется отдельно и независимо (1.3.1): это правила, а не код проекта
+
+### Deferred (явные open items, не входят в этот релиз)
+- Финальный typographic treatment wordmark (`Wordmark Exploration.html`) - текстовая форма от этого не меняется
+- Ребрендинг `index.html`: wordmark `Smart/Build/Tech` остаётся в проде до отдельной задачи
+- Cal.com slug `time-reserving` остаётся (миграция отдельно, см. rollout Phase 0)
+- Resend-домен пока не верифицирован под бренд (отправка по-прежнему с `onboarding@resend.dev`)
+- Backend-эндпоинт `book.daria.style/api/contact` остаётся на старом домене до отдельной миграции
+- Логотип не меняется: `LOGO/logo-dark.png` (см. ADR-009 и memory/feedback_use_existing_assets.md)
+- Trust block, case studies, certifications, ICP statement, отсутствующие секции (Why/Cases/Tech/FAQ) - все из §5 фоссилизированного брифа - в работе через `BRANDING_ROLLOUT_PLAN.md` Phase 2
+
 ---
 
 ## [2.1.0] — 2026-05-12

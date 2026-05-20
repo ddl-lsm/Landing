@@ -13,99 +13,6 @@
 
 ---
 
-## ADR-014 · Единый социальный хэндл @keendwell
-
-- **Дата:** 2026-05-20
-- **Статус:** принято (регистрация хэндлов в процессе)
-
-**Контекст:**
-Под бренд KEEN·DWELL нужны социальные сети. Варианты: единый хэндл везде, разные хэндлы под платформу, отказ от соцсетей до накопления контента, отложить решение.
-
-`BRANDING_ROLLOUT_PLAN.md` Phase 0 предлагает более широкий пакет (X, Instagram, LinkedIn, GitHub org, Behance, Dribbble). Пользовательское решение от 2026-05-20 - сузить первую волну до пяти платформ с массовой аудиторией и явным B2B-сигналом, остальные обсуждать отдельно.
-
-**Решение:** единый хэндл `@keendwell` на пяти платформах первой волны:
-
-1. Facebook
-2. X (Twitter)
-3. Instagram
-4. LinkedIn Company
-5. YouTube
-
-**Причина:**
-- Один хэндл = одна точка узнавания. Можно ставить в футер сайта, email-подпись, визитки, OG/Twitter meta-теги без переключения и пояснений
-- Совпадает с доменом `keendwell.com` - визуальная согласованность
-- Регистрировать имена надо сейчас, даже без активного контента - иначе их займут (брендовое имя на свободных платформах живёт до первого однофамильца или сквоттера)
-- Пять платформ первой волны покрывают основной поведенческий спектр US/UK/EU аудитории: B2C-видимость (Instagram, Facebook), B2B-видимость (LinkedIn), голос/обновления (X), longform/демо (YouTube)
-
-**Последствия:**
-- Регистрация хэндлов идёт сейчас (см. CHANGELOG [3.0.0]) - результат фиксировать в этом же ADR обновлением статуса по каждой платформе
-- При недоступности `@keendwell` на любой из пяти - решать отдельно (вариативные хэндлы вида `keendwellstudio`, `keendwell_eng` ухудшают brand consistency - предпочтительнее ждать или оспаривать)
-- Платформы второй волны (GitHub org, Behance, Dribbble, Threads, Bluesky, Mastodon, TikTok, Pinterest) - отдельным решением; `BRANDING_ROLLOUT_PLAN.md` Phase 0 и `TRADEMARK_RESEARCH.md` §2.2 рекомендуют занять GitHub/Behance/Dribbble заранее даже без активного контента
-- Контентная стратегия (что и как часто публикуем) - отдельная задача, не часть этого ADR
-- При смене стратегии на локальные хэндлы под регион (`@keendwell.us`, `@keendwell.eu` и т.п.) - вернуться сюда и пересмотреть статус
-
----
-
-## ADR-013 · Брендинг KEEN·DWELL + домен keendwell.com
-
-- **Дата:** 2026-05-20
-- **Статус:** принято
-
-**Контекст:**
-Рабочее имя SmartBuildTech, введённое в ADR-008, оказалось слабым: generic SaaS-вкус, «Smart» и «Tech» - категориальные клише, «Build» прочитывается как general contracting. За несколько раундов нейминга в TLD `.engineering` была отвергнута большая россыпь кандидатов (см. `Fossilized/PROJECT_BRIEF-v1.0.md`, §6: intelli, thread, relay, conduit, lume, casa, atelier, hearth, halo, aurora, nido, anywhere, distance, span, orbit, outpost - занят, bastion - занят, sentinel, bureau, foundry, praxis, lookout, hangar). В финальном раунде по новому словарю победил вариант KEEN·DWELL, и под него удалось взять `.com` напрямую.
-
-Полное обоснование имени (этимология «keen» во всех регистрах, инженерное «dwell time», культурное соседство с журналом Dwell, фонетика, риски) задокументировано в `BRAND_KEENDWELL.md` - этот ADR ссылается на него как на источник правды и не дублирует.
-
-**Решение:**
-
-1. **Имя бренда: `KEEN·DWELL`** (uppercase + middle dot U+00B7, без пробелов вокруг точки).
-   - Это и есть каноническое написание бренда во всех user-visible контекстах: копирайт, заголовки, page titles, мета-теги, OG/Twitter card, email subjects и body, alt-текст, ARIA-labels, document headers в репо
-   - Источник правды по семантике, voice, tone, позиционированию: `BRAND_KEENDWELL.md` (Brand Bible)
-   - Историческое имя SmartBuildTech полностью ретирано - сохраняется только в исторических путях (`Site Versions/ver-2 SmartBuildTech/`, `Fossilized/`)
-
-2. **Форма URL, доменов, email и социальных хэндлов: `keendwell`** (нижний регистр, без разделителя).
-   - Применяется только как технический идентификатор
-   - В `keendwell.com`, `dev.keendwell.com`, будущих поддоменах (`api.keendwell.com`, `book.keendwell.com`, ...), email-адресах (`studio@keendwell.com`, `hello@keendwell.com`, ...), социальных хэндлах `@keendwell` (см. ADR-014), CSS-классах и code identifiers
-
-3. **Запрещённые формы написания** (не используются ни в копирайте, ни в коде, ни в документах):
-   - `KeenDwell`, `Keendwell`, `keenDwell`
-   - `Keen Dwell`, `KEEN DWELL` (с пробелом)
-   - `Keen-Dwell`, `KEEN-DWELL`
-   - `Keen.Dwell`, `keen dwell`
-   - `KD` как standalone wordmark (KD-монограмма как favicon / app icon - допустима, но не замена wordmark)
-   - `K·D`
-
-4. **Домен и окружения.**
-   - TLD: `.com`. Домен `keendwell.com` зарегистрирован
-   - Production landing: <https://keendwell.com> - на момент решения отдаёт заглушку «coming soon»
-   - Dev / staging: <https://dev.keendwell.com>
-   - Защитные домены (`.engineering`, `.io`, `.studio`, `.design`, `.app`) - отдельная задача в `BRANDING_ROLLOUT_PLAN.md` Phase 0, не часть этого ADR
-
-5. **Визуальная форма wordmark (typography only).**
-   - Активная разработка в `Wordmark Exploration.html` (корень репо) - typeface, weight, kerning, опциональная KD-монограмма для favicon / app icon / drafting stamp, интеграция с amber-логотипом
-   - Exploration касается **только типографической обработки** строки `KEEN·DWELL` и отдельной KD-монограммы. Текст бренда не пересматривается - всегда `KEEN·DWELL`
-   - Финальный typographic treatment фиксируется отдельным обновлением Brand Bible §3 и `Actual DOCS/CLAUDE.md` - не требует переоткрытия этого ADR
-
-**Причина:**
-- Полное обоснование - в `BRAND_KEENDWELL.md` §§1-4. Кратко: двусоставная семантика «keen» (острый, проницательный, eager) + «dwell» (жилище + dwell time как инженерный термин в 5 дисциплинах) даёт многослойную считываемость - surface-читатель, educated-читатель, инженер и архитектор слышат разные смыслы из одного слова. Соседство с журналом Dwell (premium US architecture) даёт halo без прямой имитации
-- Сильная фонетика: спондей /kiːn dwɛl/, sharp opening + warm closing, нет коллизий с consumer-брендами (Orbit, Span, Wrigley)
-- `.com` доступен и зарегистрирован - снимает риск домена и даёт universal-recognition во всех целевых регионах. `.engineering` сохраняется как защитный домен в Phase 0, но не canonical
-- TM-скан (`TRADEMARK_RESEARCH.md`): композит KEEN·DWELL чист в первом проходе, явных блокеров нет. Внимание к KEEN Home Inc. (class 9, smart vents) - требует attorney clearance перед US class 9 filing
-- Uppercase + middle dot как каноническая форма: дёт чёткий визуальный ритм (две равно-весомые половины со средней точкой как структурным разделителем), исключает CamelCase-ассоциации с 2014-era startup-неймингом, читается как осознанная brand-mark, а не как кейсинг-вариация
-
-**Последствия:**
-
-- Все новые упоминания бренда в копирайте/markup - **только `KEEN·DWELL`**. В URL и хэндлах - **только `keendwell`** lowercase
-- Любые альтернативные написания запрещены без пересмотра этого ADR (см. список выше). Это правило продублировано в `Actual DOCS/CLAUDE.md` Rule 8
-- ADR-008 в части английского языка и янтарного акцента (`#EEB825`) остаётся активным; имя `SmartBuildTech` из ADR-008 заменено настоящим ADR-013 (статус ADR-008 по бренду - заменено ADR-013, по языку/цвету - принято)
-- Wordmark в `index.html` (текущая структура `Smart/Build/Tech` в трёх спанах с классами `.lw-smart` / `.lw-build` / `.lw-tech`) подлежит переписыванию на двухчастный wordmark `KEEN·DWELL` с классами `.lw-keen` / `.lw-dot` / `.lw-dwell` - выделено в отдельную задачу (`BRANDING_ROLLOUT_PLAN.md` Phase 2.4), не закрывается этим ADR
-- Cal.com slug `time-reserving`, отправитель Resend (`onboarding@resend.dev`, домен `daria.style`), backend-эндпоинт `book.daria.style/api/contact` - миграция на новый бренд решается отдельно в `BRANDING_ROLLOUT_PLAN.md` Phase 0
-- Логотип в этой фазе **не меняется** - см. `memory/feedback_use_existing_assets.md` и ADR-009. Возможные импрувы под новый бренд - отдельной задачей
-- `README.md` и `Actual DOCS/CLAUDE.md` (v1.3.1) актуализированы под бренд
-- `PROJECT_BRIEF.md`, описывавший «working title SmartBuildTech», архивирован в `Fossilized/PROJECT_BRIEF-v1.0.md`. Его §5 (маркетинговая критика прода) и §7 (user-voice-паттерны) сохраняют ценность и используются `BRANDING_ROLLOUT_PLAN.md` как input; §6 (наименование) закрыт Brand Bible
-
----
-
 ## ADR-012 · Resend + FastAPI для обработки контактной формы
 
 - **Дата:** 2026-05-12
@@ -330,7 +237,7 @@
 ## ADR-008 · English как основной язык страницы + янтарный акцент
 
 - **Дата:** 2026-05-10
-- **Статус:** принято (по языку и цвету); часть про имя SmartBuildTech заменена ADR-013
+- **Статус:** принято
 
 **Контекст:**
 v1.x — русскоязычная страница с фиолетовым акцентом под российскую аудиторию.
@@ -348,7 +255,6 @@ v1.x — русскоязычная страница с фиолетовым а�
 **Последствия:**
 - Все новые CSS-цвета — через переменные `--accent: #EEB825`, `--accent-2: #F5C842`, `--accent-glow: rgba(238,184,37,0.14)`
 - При локализации на другие языки — добавлять `lang`-атрибут и отдельный HTML-файл, не менять `index.html`
-- Имя бренда SmartBuildTech, введённое в этом ADR, заменено на KEEN·DWELL в ADR-013. Английский и жёлтый акцент - остаются
 
 ---
 

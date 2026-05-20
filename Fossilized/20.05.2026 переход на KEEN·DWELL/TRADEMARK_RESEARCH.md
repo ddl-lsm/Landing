@@ -1,4 +1,4 @@
-# KEEN·DWELL — Trademark & Niche Research
+# KeenDwell — Trademark & Niche Research
 
 > **Status:** Preliminary sniff. **Not a legal clearance.** Before filing, run a paid clearance search through a TM attorney or Markify/CompuMark.
 > **Last updated:** 2026-05-15
@@ -17,14 +17,14 @@ For production launch, commission:
 
 ---
 
-## 2. Composite "KEEN·DWELL"
+## 2. Composite "KeenDwell"
 
 ### 2.1 Direct search
 
-- **Google "KEEN·DWELL"** → no significant results. The composite is effectively unused.
+- **Google "KeenDwell"** → no significant results. The composite is effectively unused.
 - **USPTO TESS (preliminary)** → no active registration of "KEENDWELL" or "KEEN DWELL" found in initial scan.
 - **EUIPO TMview (preliminary)** → no active EU marks for the composite.
-- **Crunchbase / LinkedIn** → no companies named KEEN·DWELL, Keen Dwell, or KEEN·DWELL Inc/Ltd/GmbH.
+- **Crunchbase / LinkedIn** → no companies named KeenDwell, Keen Dwell, or KeenDwell Inc/Ltd/GmbH.
 
 **Verdict on composite:** clear in first-pass scan. Strong signal that it's available across all classes that matter to us.
 
@@ -54,7 +54,7 @@ Listed by class relevance to our business (most relevant first).
 
 | Mark | Holder | Status | Risk |
 |---|---|---|---|
-| KEEN (various) | Multiple registrations | Some active | Low — none specifically for smart-home engineering or custom dev services. "Keen" alone is too common to monopolise; combined marks (KEEN·DWELL) typically clear. |
+| KEEN (various) | Multiple registrations | Some active | Low — none specifically for smart-home engineering or custom dev services. "Keen" alone is too common to monopolise; combined marks (KeenDwell) typically clear. |
 | KEEN IQ | Keen Decision Systems | Active (marketing analytics) | Low — different category |
 | KEEN.IO | Scoot Network (acquired) | Mostly inactive | Negligible |
 | KEEN BUILDING SOLUTIONS | (search needed) | TBD | Low priority — building solutions is contractor space, not engineering |
@@ -63,7 +63,7 @@ Listed by class relevance to our business (most relevant first).
 
 | Mark | Holder | Status | Risk |
 |---|---|---|---|
-| KEEN Home | Keen Home Inc. (smart vents) | Active | ⚠️ **Worth checking carefully.** Different product (smart vents), different mark composition (Keen Home vs KEEN·DWELL), but adjacent enough that an attorney should review. Their TM is for hardware, ours is for services + software. |
+| KEEN Home | Keen Home Inc. (smart vents) | Active | ⚠️ **Worth checking carefully.** Different product (smart vents), different mark composition (Keen Home vs KeenDwell), but adjacent enough that an attorney should review. Their TM is for hardware, ours is for services + software. |
 | KEEN (multiple consumer electronics filings) | Various | Mixed | Low individually; "Keen" alone is descriptive-leaning |
 
 ### Class 25 — Clothing/footwear
@@ -136,7 +136,7 @@ Our direct competitor space is **certified KNX/Loxone/HA integrators**. Searched
 - Technical (e.g. *Wired Automation*)
 - Premium-craft (e.g. *Atelier Domotique*)
 
-**KEEN·DWELL stands out in this niche.** No phonetic collisions.
+**KeenDwell stands out in this niche.** No phonetic collisions.
 
 ### Custom software / agency space
 
@@ -155,7 +155,7 @@ Highly fragmented; thousands of agencies. Did light sweep for "Keen Software", "
 
 ## 7. Common-law (unregistered) sweep
 
-Quick check for "KEEN·DWELL" and "Keen Dwell" as company names without TM filing:
+Quick check for "KeenDwell" and "Keen Dwell" as company names without TM filing:
 
 - Companies House (UK) — no active record (preliminary)
 - Bundesanzeiger / Handelsregister (DE) — no active record (preliminary)
@@ -172,7 +172,7 @@ Quick check for "KEEN·DWELL" and "Keen Dwell" as company names without TM filin
 
 | Risk | Severity | Action |
 |---|---|---|
-| KEEN Home Inc. (smart vents, class 9) | **Moderate — verify** | Attorney opinion before US class 9 filing. Likely clear because: different product (vents vs services), different mark composition (Keen Home vs KEEN·DWELL), different distribution channel. |
+| KEEN Home Inc. (smart vents, class 9) | **Moderate — verify** | Attorney opinion before US class 9 filing. Likely clear because: different product (vents vs services), different mark composition (Keen Home vs KeenDwell), different distribution channel. |
 | Dwell magazine confusion | Low — reputational | Visual differentiation: never use Dwell's typography or layout language. Have own typeface and grid. |
 | KEEN footwear awareness | Negligible for our classes | Optional: monitor that future product line names don't drift into apparel/lifestyle |
 | Generic-term defence | Low | "Keen" + "Dwell" both have descriptive uses; the **composite** is distinctive. Standard TM doctrine protects composites even when parts are weak. |
@@ -184,16 +184,16 @@ Quick check for "KEEN·DWELL" and "Keen Dwell" as company names without TM filin
 
 1. **Defensive domain grab.** Buy `.engineering`, `.io`, `.studio`, `.design`, `.app` for `keendwell` — ~$200 total/yr. Cheapest insurance.
 2. **Social handles.** Reserve `@keendwell` on X, Instagram, LinkedIn, GitHub *today*. Free, prevents squatting.
-3. **Verify Resend domain.** Move from `onboarding@resend.dev` to `hello@keendwell.com` or `studio@keendwell.com`. Unblocks email deliverability (§5.12 of `Fossilized/PROJECT_BRIEF-v1.0.md`).
+3. **Verify Resend domain.** Move from `onboarding@resend.dev` to `hello@keendwell.com` or `studio@keendwell.com`. Unblocks email deliverability (§5.12 of PROJECT_BRIEF).
 4. **Attorney clearance for US class 42.** Engineering services is our home class. Budget $400–$800 for an opinion letter. Verify especially against **KEEN Home Inc.** in class 9.
 5. **EU class 42 sweep via TMview.** Free, do it ourselves before deciding whether to file EUIPO or wait.
 6. **File US TM (intent-to-use)** for class 42 (engineering services) and class 9 (smart-home / IoT software) once clearance is clean. ~$350/class + attorney fees.
-7. **Monitor.** Set up Google Alerts for "KEEN·DWELL" — catches squatters and accidental adopters early.
+7. **Monitor.** Set up Google Alerts for "KeenDwell" — catches squatters and accidental adopters early.
 
 ---
 
 ## 10. Open questions to resolve before launch
 
-- Should we file for class 35 (business advisory / consultancy services) too? Adds protection against future "KEEN·DWELL Consulting" copycats. ~$350.
+- Should we file for class 35 (business advisory / consultancy services) too? Adds protection against future "KeenDwell Consulting" copycats. ~$350.
 - Should we file Madrid Protocol for EU + UK + AU coverage? Cheaper than separate filings if we plan multi-jurisdiction.
 - Do we want a stylised mark filing (wordmark + symbol locked together) or a plain word mark? Word mark is broader protection; stylised mark protects the specific lockup but is narrower.

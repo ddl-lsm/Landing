@@ -1,18 +1,15 @@
-# KEEN·DWELL — Brand Bible
+# KeenDwell — Brand Bible
 
-> **Status:** Brand name LOCKED. Visual wordmark (typeface, weight, mark) still being explored in `Wordmark Exploration.html` — but the brand **text** form is locked.
-> **Brand text form:** `KEEN·DWELL` (uppercase + middle dot U+00B7). Use this verbatim in all copy, headings, page titles, meta tags, emails, documents, and markup. No other casing of the brand name is permitted.
-> **Domain:** `keendwell.com` (acquired). Currently serves a "coming soon" placeholder. Production landing: <https://keendwell.com>
-> **Dev / staging:** `dev.keendwell.com`. Address: <https://dev.keendwell.com>
-> **Social handle:** `@keendwell` on Facebook, X (Twitter), Instagram, LinkedIn Company, YouTube (registration in progress — see ADR-014)
-> **Last updated:** 2026-05-20
-> **Supersedes:** SmartBuildTech (working title, dropped — see ADR-013)
+> **Status:** Brand name LOCKED. Wordmark exploration and rollout in progress.
+> **Domain:** `keendwell.com` (acquired)
+> **Last updated:** 2026-05-15
+> **Supersedes:** SmartBuildTech (working title, dropped)
 
 ---
 
 ## 1. What the name actually means
 
-KEEN·DWELL is a compound. Both halves earn their place. The brand works on multiple semantic layers simultaneously — surface readers get one meaning, engineers get another, architects get a third.
+KeenDwell is a compound. Both halves earn their place. The brand works on multiple semantic layers simultaneously — surface readers get one meaning, engineers get another, architects get a third.
 
 ### 1.1 "Keen" — full spectrum
 
@@ -41,7 +38,7 @@ KEEN·DWELL is a compound. Both halves earn their place. The brand works on mult
 | | Manufacturing: pause between operations | Production engineering |
 | | UX analytics: time on page | Digital product engineering |
 | | Cybersecurity: undetected attacker presence time | Software / security engineering |
-| **Dwell (magazine)** | Premium US architecture publication since 2000 — bible of modern residential design | **Most important cultural adjacency.** Our ICP reads Dwell. KEEN·DWELL lives in its orbit at no cost. |
+| **Dwell (magazine)** | Premium US architecture publication since 2000 — bible of modern residential design | **Most important cultural adjacency.** Our ICP reads Dwell. KeenDwell lives in its orbit at no cost. |
 
 ### 1.3 The composite — what each audience hears
 
@@ -75,10 +72,9 @@ This **multi-layered legibility** is what single-word candidates (outpost, basti
 - **KD monogram** — two angular caps, excellent favicon / app icon / drafting stamp
 - **No descenders, one ascender (d)** — flat baseline, any typeface sits cleanly
 - **Lockup considerations:**
-  - **Brand text form (locked):** `KEEN·DWELL` (uppercase + middle dot U+00B7). All copy / markup / titles / meta / emails / documents. No exceptions.
-  - **URL / handle / code identifier form (locked):** `keendwell` (lowercase, no separator). Used in `keendwell.com`, `dev.keendwell.com`, `@keendwell` social handles, email addresses, CSS class names, file names.
-  - **Visual wordmark exploration** (typeface, weight, kerning, KD monogram, optional mark): in progress in `Wordmark Exploration.html`. The text content of the wordmark is always `KEEN·DWELL` — only the typographic treatment is open.
-  - **Forbidden forms:** `KeenDwell`, `Keendwell`, `keenDwell`, `Keen Dwell`, `Keen-Dwell`, `Keen.Dwell`, `keen dwell`, `KD` (as a standalone wordmark substitute), `K·D`. None of these appear in copy, markup, or visual treatment.
+  - `keendwell.com` — domain only
+  - Wordmark recommended forms: `keendwell` (all lower) or `Keen·Dwell` (mid-dot divider) or `Keen Dwell` (split)
+  - **CamelCase `KeenDwell` reads as 2014-era startup** — use only when single-word lockup is required (URLs, code, social handles)
 - **Color:** Wordmark in amber `#EEB825` (existing brand) on dark `#0c0c0e`, or in `#F5F2EC` (warm off-white) on the amber when inverted
 - **Logo mark** (existing amber symbol — `LOGO/logo-dark.png`) **NEVER recreated in SVG.** Always referenced as PNG. See `memory/feedback_use_existing_assets.md`.
 
@@ -130,7 +126,7 @@ Not final — directions to pull from. Strongest first.
 | "Dwell on" idiom can mean unproductive obsession ("don't dwell on it") | Low | Don't use "don't dwell" or negative-frame *dwell on* in copy |
 | Irish *keening* = mourning wail | Very low (micro-audience) | Don't use verb "to keen" in copy |
 | Adjacency to Dwell magazine (could read as imitation) | Low — more halo than harm | Never imitate Dwell's typography or layout. Own typeface, own rhythm. |
-| CamelCase / split form variations | Cosmetic | All forbidden in copy and markup. The brand text form is `KEEN·DWELL` everywhere. See `Actual DOCS/CLAUDE.md` Rule 8. |
+| CamelCase dated | Cosmetic | Wordmark uses lowercase or split form. CamelCase only for code/handles. |
 | "Keen" reads British in US | Micro | Optionally use "sharp" alongside in US-targeted copy |
 
 ---
@@ -156,7 +152,7 @@ Not final — directions to pull from. Strongest first.
 
 ## 10. Things this doc supersedes
 
-- All §6 of `Fossilized/PROJECT_BRIEF-v1.0.md` (naming exploration) is now closed
+- All §6 of `PROJECT_BRIEF.md` (naming exploration) is now closed
 - Open question #1 in §8 (final brand name) — RESOLVED
 - Open question #2 (domain registration) — RESOLVED (`keendwell.com`)
 

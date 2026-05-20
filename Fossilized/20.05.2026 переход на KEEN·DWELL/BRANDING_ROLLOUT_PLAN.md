@@ -1,7 +1,7 @@
-# KEEN·DWELL — Branding Rollout Plan
+# KeenDwell — Branding Rollout Plan
 
 > **From:** SmartBuildTech (working title, never launched publicly)
-> **To:** KEEN·DWELL — engineering studio for remote smart-home + custom software
+> **To:** KeenDwell — engineering studio for remote smart-home + custom software
 > **Last updated:** 2026-05-15
 
 This is the operational checklist to take the new name live, in priority order. Group by phase; each phase has a clear unblock condition for the next.
@@ -51,7 +51,7 @@ From `Actual DOCS/CLAUDE.md` (ADR-008):
 - `--accent-2: #F5C842`
 - `--accent-glow: rgba(238,184,37,0.14)`
 
-Add for KEEN·DWELL brand kit:
+Add for KeenDwell brand kit:
 - `--text: #F5F2EC` (warm off-white)
 - `--text-muted: rgba(245,242,236,0.65)`
 - `--text-faint: rgba(245,242,236,0.45)`
@@ -69,7 +69,7 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 
 - [ ] One-page voice cheat sheet (do/don't, vocabulary anchors) — print and pin
 - [ ] Rewrite hero, services, and CTA copy against the cheat sheet
-- [ ] Define ICP statement (closes §5.4 critique in `Fossilized/PROJECT_BRIEF-v1.0.md`)
+- [ ] Define ICP statement (closes §5.4 critique in PROJECT_BRIEF)
 
 **Unblock for Phase 2:** Wordmark + monogram exported, voice cheat sheet drafted, ICP statement written.
 
@@ -77,7 +77,7 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 
 ## Phase 2 — Site relaunch (next 2 weeks)
 
-**Goal:** Production landing reflects the KEEN·DWELL brand and addresses the §5 marketing critique from `Fossilized/PROJECT_BRIEF-v1.0.md`.
+**Goal:** Production landing reflects the KeenDwell brand and addresses the §5 marketing critique from `PROJECT_BRIEF.md`.
 
 ### 2.1 Critical critique fixes (§5 of brief)
 
@@ -101,7 +101,7 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 - [ ] **Cases** section — add at least one anonymised case study with concrete numbers (system, sq.m., country, timeline, price-range).
 - [ ] **Tech** section — add. Show the 5 supported systems (KNX, BACnet, Loxone, Home Assistant, Siemens LOGO) with logos or wordmarks if licensable. (§5.6)
 - [ ] **FAQ** section — add. 6–10 questions answering the actual objections of a remote engagement: *"How do you commission without being on site?" "Who installs the hardware?" "What if something breaks after delivery?" "Do you work with my country's regulations?" "How is pricing structured?"* (§5.6)
-- [ ] **Process** — replace generic 4-step with the actual KEEN·DWELL process: *video site survey → topology + BOM in 5 days → remote programming via VPN / on-site installer hands → Zoom commissioning → handover + 90-day support window*. (§5.9)
+- [ ] **Process** — replace generic 4-step with the actual KeenDwell process: *video site survey → topology + BOM in 5 days → remote programming via VPN / on-site installer hands → Zoom commissioning → handover + 90-day support window*. (§5.9)
 - [ ] **Remote angle** — pull into H1 with one metric. (§5.7)
 - [ ] **AI integration** — decide: feature in hero (commit) or remove from services entirely. **Recommend: commit** — frame as "predictive control, intelligent scheduling, voice-first dashboards". (§5.8)
 - [ ] **Pricing** — remove "from $500". Replace with typical-project range per practice: *"Smart-home projects typically EUR 3k–25k depending on size and integration depth"* + *"Software projects scoped per discovery call"*. (§5.10)
@@ -114,13 +114,13 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 
 ### 2.4 Brand application
 
-- [ ] Replace every "SmartBuildTech" string in `index.html` with "KEEN·DWELL"
+- [ ] Replace every "SmartBuildTech" string in `index.html` with "KeenDwell"
 - [ ] Replace meta tags: `<title>`, `<meta name="description">`, OpenGraph, Twitter card
 - [ ] Update favicon → KD monogram
 - [ ] Update OG image — 1200×630 PNG with wordmark + tagline
-- [ ] Footer wordmark + copyright line: `© 2026 KEEN·DWELL. Remote engineering studio.`
+- [ ] Footer wordmark + copyright line: `© 2026 KeenDwell. Remote engineering studio.`
 
-**Unblock for Phase 3:** Landing live on `keendwell.com` with KEEN·DWELL branding, contact modal works, email delivers from `@keendwell.com`.
+**Unblock for Phase 3:** Landing live on `keendwell.com` with KeenDwell branding, contact modal works, email delivers from `@keendwell.com`.
 
 ---
 
@@ -137,7 +137,7 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 
 ### 3.2 Cal.com
 
-- [ ] Event page branding — use KEEN·DWELL color + logo header
+- [ ] Event page branding — use KeenDwell color + logo header
 - [ ] Slug renamed (`discovery` or `intro-call`)
 - [ ] Confirmation email template — branded
 - [ ] Reschedule / cancel page — branded
@@ -151,15 +151,15 @@ Per `BRAND_KEENDWELL.md` §3 — final wordmark typeface drives this. Tentative:
 ### 3.4 Document templates
 
 - [ ] **Proposal template** (PDF/web) — branded header, KD monogram, tagline strip, structured sections (scope, BOM, timeline, price range, terms)
-- [ ] **Case study template** — single page format, KEEN·DWELL branded
-- [ ] **NDA template** — KEEN·DWELL letterhead
+- [ ] **Case study template** — single page format, KeenDwell branded
+- [ ] **NDA template** — KeenDwell letterhead
 - [ ] **Invoice template** — match proposal style
 
 ---
 
 ## Phase 4 — SEO & visibility (weeks 4–6)
 
-**Goal:** Pickable by the actual searches happening (§5.15 of `Fossilized/PROJECT_BRIEF-v1.0.md`).
+**Goal:** Pickable by the actual searches happening (§5.15 of brief).
 
 - [ ] **Landing-page SEO** — title, meta description, h1, structured data (JSON-LD `LocalBusiness` + `ProfessionalService`)
 - [ ] **Intent-keyword landing pages** (sub-pages of `keendwell.com`):

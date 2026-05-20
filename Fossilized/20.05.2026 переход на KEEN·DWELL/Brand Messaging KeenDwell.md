@@ -1,13 +1,13 @@
-### Brand Messaging: KEEN·DWELL
+### Brand Messaging: KeenDwell
 
 #### **Group 1: Global Expert (Масштаб и профессионализм)**
 
-- **KEEN·DWELL: Remote Smart Home Engineering.** *Sharp intelligence for the way you live.*
-- **KEEN·DWELL: Expert Smart Home Engineering. Anywhere.** *Precision design and remote integration for your living space.* (*Sharp intelligence for your living space.*)
-- **KEEN·DWELL: Smart Home Engineering. Worldwide.** *Your home’s intelligence, designed and tuned anywhere.*
+- **KeenDwell: Remote Smart Home Engineering.** *Sharp intelligence for the way you live.*
+- **KeenDwell: Expert Smart Home Engineering. Anywhere.** *Precision design and remote integration for your living space.* (*Sharp intelligence for your living space.*)
+- **KeenDwell: Smart Home Engineering. Worldwide.** *Your home’s intelligence, designed and tuned anywhere.*
 - **Precision Design. Remote Integration. Smarter Living.**
 - **Your Home’s Intelligence, Designed and Tuned Anywhere.**
-- **KEEN·DWELL: Sharp Intelligence for Your Living Space.**
+- **KeenDwell: Sharp Intelligence for Your Living Space.**
 - **Keen Intelligence. Better Dwelling.** *Remote design and setup for modern homes.*
 - **Sharp Intelligence for the way you live.**
 - **Keen intelligence for your living space.**
@@ -19,9 +19,9 @@
 
 #### **Group 3: Philosophical & Lifestyle (Стиль жизни и концепция)**
 
-- **KEEN·DWELL: Modern Living. Engineered.** *The new standard of dwelling.*
+- **KeenDwell: Modern Living. Engineered.** *The new standard of dwelling.*
 - **Keen Intelligence. Better Dwelling.** *Intelligent design for modern living.*
-- **KEEN·DWELL: The Art of Modern Dwelling.** *Modern living, refined.*
+- **KeenDwell: The Art of Modern Dwelling.** *Modern living, refined.*
 - **We Build the Logic. You Enjoy the Comfort.**  *Global Expertise, Remote Execution.*
 - **Smart Living, Sharpened.**
 

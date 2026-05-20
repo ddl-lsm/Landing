@@ -1,7 +1,7 @@
 # CLAUDE.md - Canonical Rules and Principles
 
-Version: 1.1.0
-Last updated: 2026-05-19
+Version: 1.3.1
+Last updated: 2026-05-20
 
 ---
 
@@ -74,60 +74,151 @@ Last updated: 2026-05-19
 
 ---
 
-# CLAUDE.md — Context for AI assistants
+# CLAUDE.md - Context for AI assistants
 
-Read this file before touching any code.
+Read this file first. Then read the docs in the index below before touching anything.
 
 ## What this project is
 
-Single-page landing for **SmartBuildTech** — smart home automation, custom app development, AI integration.
+Single-page landing for **KEEN·DWELL** - a remote smart-home engineering and custom software studio. Smart home automation, custom app development, AI integration. Two practices, one team. Delivered remotely, anywhere in the world (no on-site visits).
+
 Target audience: US/UK/EU English-speaking market.
 
-Goal: convert visitors into contact-form submissions (`#contact`).
+Goal: convert visitors into contact-form submissions and Cal.com discovery-call bookings.
 
-## Key files
+## Brand
 
-| File         | Purpose                                                         |
-|--------------|-----------------------------------------------------------------|
-| `index.html` | All markup. Sections top-to-bottom: Nav, Hero, Why, Services, Process, Cases, Tech, FAQ, Contact, Footer. |
-| `style.css`  | All styles. Variables in `:root`, then blocks per section.      |
-| `script.js`  | Scroll nav blur, IntersectionObserver animations, handleSubmit. |
-| `LOGO/logo-dark.png`   | Logo processed for dark background (see ADR-009).   |
+### Brand name and how to write it
+
+The brand is **`KEEN·DWELL`** (uppercase + middle dot U+00B7, no spaces around the dot). Use this verbatim in:
+
+- All user-visible copy (hero, services, sections, captions)
+- Page titles, headings, meta tags (`<title>`, OG, Twitter card)
+- Email subjects, signatures, body copy
+- Document headers in this repo (READMEs, ADRs, briefs)
+- Markup `alt` text and ARIA labels for the wordmark
+- Comments in source code that name the brand
+
+The lowercase form **`keendwell`** (no separator) is used **only** as a technical identifier:
+
+- Domain names: `keendwell.com`, `dev.keendwell.com`
+- Subdomains: `api.keendwell.com`, `book.keendwell.com`, etc. (when created)
+- Email addresses: `studio@keendwell.com`, `hello@keendwell.com`, `dmitry@keendwell.com`
+- Social handles: `@keendwell` on every platform (see ADR-014)
+- Code identifiers: variable names, CSS class names referring to the brand (e.g. `.logo-keendwell`)
+
+**Forbidden forms** (do not write, do not auto-correct to):
+`KeenDwell`, `Keendwell`, `keenDwell`, `Keen Dwell`, `KEEN DWELL` (with space), `Keen-Dwell`, `KEEN-DWELL`, `Keen.Dwell`, `keen dwell`, `KD` as a standalone wordmark, `K·D`. If `BRAND_KEENDWELL.md` (Brand Bible) §3 lists any of these as wordmark candidates, that section is stale and must be brought into line with this CLAUDE.md.
+
+### Domains and environments
+
+- Production landing: **<https://keendwell.com>** - currently serves a "coming soon" placeholder
+- Dev / staging: **<https://dev.keendwell.com>**
+- Legacy GitHub Pages mirror (kept while the migration completes): <https://ddl-lsm.github.io/Lending/>
+
+### Wordmark exploration
+
+The visual wordmark - typeface, weight, kerning, optional KD monogram for favicon / app icon, integration with the existing amber logo mark - is an open exploration in `Wordmark Exploration.html` (repo root). That exploration covers **typographic treatment** of the string `KEEN·DWELL` and a separate KD monogram for compact contexts. It does **not** open up the text form of the brand name itself - the text is always `KEEN·DWELL`.
+
+### Social handle
+
+`@keendwell` on Facebook, X (Twitter), Instagram, LinkedIn Company, YouTube. Registration in progress. See ADR-014.
+
+### Retired
+
+`SmartBuildTech` (working title, never publicly launched). Must stay only in archival paths:
+- `Site Versions/ver-2 SmartBuildTech/`
+- `Fossilized/`
+- any historical case-study text where retroactive renaming would falsify a record
+
+Do **not** reintroduce `SmartBuildTech` into live code, copy, markup, comments, meta tags, or docs outside those paths.
+
+## Documentation index
+
+The doc set is split between three living locations. Read top-to-bottom.
+
+### `Actual DOCS/` - canonical rules and history
+| File | Role |
+|---|---|
+| `CLAUDE.md` (this file) | Rules, principles, brand. Read first. |
+| `CHANGELOG.md` | Versioned history. Newest at top. |
+| `DECISION_LOG.md` | ADRs with reasoning. Newest at top. ADR-013 = brand name and domain; ADR-014 = social handles. |
+
+### Root - active brand work
+| File | Role |
+|---|---|
+| `BRAND_KEENDWELL.md` | **Brand Bible.** Canonical reference: name meaning, phonetics, voice, tone, positioning, risks. Read before writing any user-facing copy. |
+| `BRANDING_ROLLOUT_PLAN.md` | Operational rollout checklist, 6 phases. Read before planning brand-related sprints. |
+| `TRADEMARK_RESEARCH.md` | Preliminary TM scan. Not legal clearance - guides what attorney work is needed before public filing. |
+| `Brand Messaging KeenDwell.md` | Tagline / messaging directions across four registers (Global Expert / Value / Lifestyle / Action). Working set, not final. Filename retains historical CamelCase for git history continuity; the document content uses `KEEN·DWELL`. |
+| `Wordmark Exploration.html` | Interactive exploration of visual wordmark variants (typography only - the text is always `KEEN·DWELL`). |
+
+### `Fossilized/` - archived earlier identities
+| File | Role |
+|---|---|
+| `CLAUDE-v1.0.md` | DevHome-era AI context. Historical. |
+| `README-v1.0.md` | DevHome-era README. Historical. |
+| `PROJECT_BRIEF-v1.0.md` | Cross-session brief from the SmartBuildTech working-title era. **Still useful** for §5 marketing critique and §7 user-voice patterns; §6 naming exploration is closed (resolved by `BRAND_KEENDWELL.md` and ADR-013). |
+
+### `memory/` - behavioural memory for AI assistants
+| File | Role |
+|---|---|
+| `feedback_use_existing_assets.md` | Hard rule: never recreate the logo in SVG. Use `LOGO/logo-dark.png` via `<img>`. Earned from a past mistake. |
+
+## Key code files
+
+| File | Purpose |
+|---|---|
+| `index.html` | All markup. Sections top-to-bottom: Nav, Hero, Why, Services, Process, Cases, Tech, FAQ, Contact, Footer. As of v3.0.0 still ships the old SmartBuildTech wordmark - rebrand of the markup is a separate task. |
+| `style.css` | All styles. Variables in `:root`, then blocks per section. |
+| `script.js` | Scroll nav blur, IntersectionObserver animations, handleSubmit. |
+| `LOGO/logo-dark.png` | Logo processed for dark background (see ADR-009). Never recreated in SVG. |
 
 ## Design system
 
 **Theme:** dark only. Background `#0c0c0e`, surface `#16161a`, surface-2 `#1e1e24`.
-**Accent:** `#EEB825` (R:236 G:175 B:33) — matches logo yellow exactly. Do not approximate.
+**Accent:** `#EEB825` (R:236 G:175 B:33) - matches logo yellow exactly. Do not approximate.
 **Accent variables:** `--accent`, `--accent-2: #F5C842`, `--accent-glow: rgba(238,184,37,0.14)`.
+**Text on dark** (planned, per `BRANDING_ROLLOUT_PLAN.md` §1.3):
+- `--text: #F5F2EC` (warm off-white)
+- `--text-muted: rgba(245,242,236,0.65)`
+- `--text-faint: rgba(245,242,236,0.45)`
+- `--rule: rgba(245,242,236,0.10)`
 
-Change colors only via CSS variables in `:root` — never hardcode.
+Change colors only via CSS variables in `:root` - never hardcode.
 
-**Typography:** Inter (Google Fonts). Hero title via `clamp()`.
+**Typography:** Inter (Google Fonts, body). Hero title via `clamp()`. Future additions per rollout plan §1.4: display typeface (TBD from wordmark exploration), IBM Plex Mono for engineering register.
 
 **Components:**
-- `.btn` / `.btn-primary` / `.btn-ghost` / `.btn-lg` — buttons
-- `.card` / `.card-featured` / `.card-cta` — service cards (`.card-cta` spans 2 grid cols)
-- `.diff-item` — differentiator items (3-col grid)
-- `.section` / `.section-alt` — page sections
-- `.container` — centring wrapper, max-width 1120px
+- `.btn` / `.btn-primary` / `.btn-ghost` / `.btn-lg` - buttons
+- `.card` / `.card-featured` / `.card-cta` - service cards (`.card-cta` spans 2 grid cols)
+- `.diff-item` - differentiator items (3-col grid)
+- `.section` / `.section-alt` - page sections
+- `.container` - centring wrapper, max-width 1120px
 
-**Logo in nav:**
+**Reference markup for the nav lockup:**
 ```html
-<img src="LOGO/logo-dark.png" class="logo-icon" alt="SmartBuildTech">
+<img src="LOGO/logo-dark.png" class="logo-icon" alt="KEEN·DWELL">
 <span class="logo-wordmark">
-  <span class="lw-smart">Smart</span><span class="lw-build">Build</span><span class="lw-tech">Tech</span>
+  <span class="lw-keen">KEEN</span><span class="lw-dot">·</span><span class="lw-dwell">DWELL</span>
 </span>
 ```
+When `Wordmark Exploration.html` lands on a final typographic treatment, this snippet and the class names may be re-issued - but the text content stays `KEEN·DWELL`.
 
 ## Rules when editing
 
-1. **Zero dependencies.** No npm, no frameworks, no CDN libraries.
-2. **CSS variables.** All new colors/radii/spacing — variables in `:root`.
+1. **Zero dependencies.** No npm, no frameworks, no CDN libraries (React + Babel via CDN tolerated for inline JSX in the current single-file build).
+2. **CSS variables.** All new colors/radii/spacing - variables in `:root`.
 3. **Inline SVG for icons.** Do not import icon libraries.
 4. **Semantic HTML.** Use `<section>`, `<nav>`, `<footer>`, `<details>` correctly.
 5. **Responsive.** All new blocks need mobile styles. Breakpoints: 900px and 640px.
 6. **English content only.** Do not add Russian text to `index.html`.
-7. **Logo:** use `LOGO/logo-dark.png` via `<img>`. Do not recreate in SVG. See ADR-009.
+7. **Logo:** use `LOGO/logo-dark.png` via `<img>`. Do not recreate in SVG. See ADR-009 and `memory/feedback_use_existing_assets.md`.
+8. **Brand string.** Only the two canonical forms exist (see Brand section):
+   - Body copy / user-visible text / headings / titles / meta / alt text: `KEEN·DWELL`
+   - URLs / handles / email / code identifiers: `keendwell` (lowercase, no separator)
+   - Everything else is forbidden. No CamelCase, no Pascal case, no hyphenated forms, no spaced form.
+9. **Voice & tone.** Match `BRAND_KEENDWELL.md` §5. British-leaning crispness, concrete outcomes, engineering register where it earns trust. No SaaS hyperbole, no decorative emoji.
 
 ## Common tasks
 
@@ -143,30 +234,20 @@ Change colors only via CSS variables in `:root` — never hardcode.
 1. Copy an existing section structure in `index.html`
 2. Add a CSS block in `style.css` at the correct position (keep top-to-bottom section order)
 3. Add nav anchor link
+4. Voice-check the copy against `BRAND_KEENDWELL.md` §5 before merging
 
 ### Wire up real form submission
-```js
-// script.js → handleSubmit()
-
-// Option 1: Formspree
-const res = await fetch('https://formspree.io/f/YOUR_ID', {
-  method: 'POST', body: new FormData(form),
-  headers: { Accept: 'application/json' }
-});
-
-// Option 2: Telegram Bot
-await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-  method: 'POST',
-  body: JSON.stringify({ chat_id: CHAT_ID, text: `New request: ...` }),
-  headers: { 'Content-Type': 'application/json' }
-});
-```
+Current production uses FastAPI + Resend backend on OCI, endpoint `POST https://book.daria.style/api/contact` (see ADR-012). Migration of this endpoint to a `keendwell.com` subdomain is tracked in `BRANDING_ROLLOUT_PLAN.md` Phase 0.
 
 ## What NOT to do
 
 - Do not hardcode `#EEB825` outside `:root`
-- Do not add `!important` — specificity is intentionally flat
-- Do not recreate the logo in SVG — use `LOGO/logo-dark.png`
+- Do not add `!important` - specificity is intentionally flat
+- Do not recreate the logo in SVG - use `LOGO/logo-dark.png`
 - Do not change section order without updating `DECISION_LOG.md`
-- Do not wrap the form in an extra `<div>` — `handleSubmit` replaces `innerHTML` directly
-- Do not add Russian text
+- Do not wrap the form in an extra `<div>` - `handleSubmit` replaces `innerHTML` directly
+- Do not add Russian text to `index.html`
+- Do not write `SmartBuildTech` anywhere outside the archival paths listed in the Brand section
+- Do not write the brand in any form other than the two canonical ones (`KEEN·DWELL` for copy, `keendwell` for URLs/handles). See "Rules when editing" Rule 8.
+- Do not modify `BRAND_KEENDWELL.md`, `BRANDING_ROLLOUT_PLAN.md`, or `TRADEMARK_RESEARCH.md` content without updating their "Last updated" line and noting the change in CHANGELOG
+- Do not promote any of the working tagline candidates (`Brand Messaging KeenDwell.md`) into production copy before user picks one
