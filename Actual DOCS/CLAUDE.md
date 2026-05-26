@@ -1,7 +1,7 @@
 # CLAUDE.md - Canonical Rules and Principles
 
-Version: 1.3.1
-Last updated: 2026-05-20
+Version: 1.4.0
+Last updated: 2026-05-26
 
 ---
 
@@ -169,25 +169,29 @@ The doc set is split between three living locations. Read top-to-bottom.
 
 | File | Purpose |
 |---|---|
-| `index.html` | All markup. Sections top-to-bottom: Nav, Hero, Why, Services, Process, Cases, Tech, FAQ, Contact, Footer. As of v3.0.0 still ships the old SmartBuildTech wordmark - rebrand of the markup is a separate task. |
-| `style.css` | All styles. Variables in `:root`, then blocks per section. |
-| `script.js` | Scroll nav blur, IntersectionObserver animations, handleSubmit. |
+| `index.html` | Full single-page landing for `dev.keendwell.com`. React 18 + Babel standalone, self-contained. Sections: Nav, Hero, Why, Services, Process, Cases, Tech, FAQ, Contact, Footer. Brand: KEEN·DWELL (rebranded from SmartBuildTech in v2.2.0). |
+| `splash/index.html` | Coming-soon page for `keendwell.com`. Standalone HTML, no framework. Shows wordmark, tagline, protocol logos. |
+| `splash/fonts/ForoMed.ttf` | ForoMed - wordmark display font (provisional, see ADR-015). Same file as `LOGO/FontsFree-Net-ForoMed-webfont.ttf`. |
+| `style.css` | Styles for the legacy SmartBuildTech ver-1 build (root-level). Not used by `index.html` (self-contained). |
+| `script.js` | JS for the legacy SmartBuildTech ver-1 build. Not used by `index.html` (self-contained). |
 | `LOGO/logo-dark.png` | Logo processed for dark background (see ADR-009). Never recreated in SVG. |
 
 ## Design system
 
-**Theme:** dark only. Background `#0c0c0e`, surface `#16161a`, surface-2 `#1e1e24`.
-**Accent:** `#EEB825` (R:236 G:175 B:33) - matches logo yellow exactly. Do not approximate.
-**Accent variables:** `--accent`, `--accent-2: #F5C842`, `--accent-glow: rgba(238,184,37,0.14)`.
-**Text on dark** (planned, per `BRANDING_ROLLOUT_PLAN.md` §1.3):
-- `--text: #F5F2EC` (warm off-white)
-- `--text-muted: rgba(245,242,236,0.65)`
-- `--text-faint: rgba(245,242,236,0.45)`
-- `--rule: rgba(245,242,236,0.10)`
+**Theme:** `dev.keendwell.com` uses light theme (background `#FAFAF7`, surface `#FFFFFF`, ink `#0A0A0A`). Splash `keendwell.com` uses dark theme (background `#0c0c0e`).
+
+**Wordmark colors (canonical, ADR-016):**
+- Light bg: `KEEN` `#EABB30` (amber) · `#2E66DB` (blue) `DWELL` `#0A0A0A` (black)
+- Dark bg: `KEEN` `#EABB30` · `#2E66DB` `DWELL` `#ffffff`
+
+**Brand color variables:**
+- `--yellow: #EABB30` (or `--amber`) - primary amber accent, matches logo
+- `--blue: #2E66DB` - secondary accent, wordmark dot, engineering references
+- `--blue-haze: rgba(46,102,219,0.10)` - blue tint for backgrounds
+
+**Typography:** Inter (Google Fonts, body). ForoMed TTF (`splash/fonts/ForoMed.ttf`) for wordmark display - provisional, see ADR-015.
 
 Change colors only via CSS variables in `:root` - never hardcode.
-
-**Typography:** Inter (Google Fonts, body). Hero title via `clamp()`. Future additions per rollout plan §1.4: display typeface (TBD from wordmark exploration), IBM Plex Mono for engineering register.
 
 **Components:**
 - `.btn` / `.btn-primary` / `.btn-ghost` / `.btn-lg` - buttons

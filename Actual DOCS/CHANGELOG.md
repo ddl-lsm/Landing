@@ -8,14 +8,42 @@
 
 ## [Unreleased]
 
-> Сюда идут изменения, которые ещё не вышли в релиз.
+> Незавершённые работы и запланированные задачи.
 
-- `index.html`: переписать wordmark с устаревшего `Smart/Build/Tech` (три спана) на двухчастный `KEEN·DWELL` (с классами `.lw-keen` / `.lw-dot` / `.lw-dwell`); обновить `<title>`, мета-теги, OG/Twitter, alt-текст логотипа, footer copyright
+### Незавершено в v2.2.0 (требует доработки)
+- **Логотипы протоколов** — текущая реализация (inline SVG-аппроксимации) не соответствует визуальному ожиданию. Нужны фактические файлы брендовых логотипов (KNX, LOXONE, BACnet/ASHRAE, Home Assistant, Siemens LOGO!) или их точные трассировки в SVG
+- **Локап лого + вордмарк** — соотношение размеров и межсимвольный интервал требуют финальной калибровки после утверждения шрифта
+
+### Ожидают решения
 - `Wordmark Exploration.html`: финальный typographic treatment (typeface, weight, kerning, KD-монограмма) - после выбора обновить `BRAND_KEENDWELL.md` §3 и эталон в `Actual DOCS/CLAUDE.md`. Текстовая форма бренда от этого не меняется (всегда `KEEN·DWELL`)
 - Cal.com slug `time-reserving` -> `intro-call` или `discovery` (см. `BRANDING_ROLLOUT_PLAN.md` Phase 0)
 - Resend: верифицировать домен `keendwell.com` в Resend, заменить отправителя `onboarding@resend.dev` -> `studio@keendwell.com` или `hello@keendwell.com` (см. `BRANDING_ROLLOUT_PLAN.md` Phase 0)
 - Backend-эндпоинт: миграция `book.daria.style/api/` на поддомен keendwell.com (например, `api.keendwell.com`)
 - ICP statement: сформулировать одно предложение (homeowner mid-build vs architect vs existing-system owner) и зафиксировать в `BRAND_KEENDWELL.md` §4 или отдельным ADR
+- Полный лендинг `keendwell.com`: перенести `index.html` из dev в production после финальной проверки
+
+---
+
+## [2.2.0] - 2026-05-26
+
+### Added
+- `keendwell.com`: новая coming-soon splash-страница (`splash/index.html`) - вордмарк KEEN·DWELL в 3 цветах, tagline «Sharp homes. Quietly engineered.», строка логотипов протоколов, технический grid-фон
+- `splash/fonts/ForoMed.ttf` - шрифт вордмарка, загружен на OCI и в репо
+- `Site Versions/ver-3 KEEN·DWELL/` - архивная папка с обоими сайтами на дату выпуска (лендинг + splash)
+- CSS-переменная `--blue: #2E66DB` - второй фирменный акцент (цвет точки в вордмарке)
+
+### Changed
+- `dev.keendwell.com` (`index.html`): полный ребрендинг SmartBuildTech → KEEN·DWELL - title, eyebrow, nav, footer, copyright, meta
+- Вордмарк во всех контекстах: трёхцветная схема KEEN `#EABB30` · `#2E66DB` DWELL `#ffffff`/`#0A0A0A` (ADR-016)
+- Шрифт вордмарка: ForoMed через `@font-face`, применён к `.wm-keen`, `.wm-dot`, `.wm-dwell` (ADR-015)
+- Логотипы протоколов в marquee и splash: первая итерация inline SVG (KNX, LOXONE, BACnet/ASHRAE, Home Assistant, Siemens LOGO!) взамен текстовых меток
+- Контакты на `dev.keendwell.com`: удалён российский номер телефона (+7), Telegram `@devhome` → `@keendwell`, email `hello@devhome.ru` → `info@keendwell.com`
+- `.brand` gap в nav: `12px` → `7px` (сжатие локапа)
+
+### Documentation
+- ADR-015: ForoMed как шрифт вордмарка (предварительно)
+- ADR-016: трёхцветный вордмарк KEEN amber · blue DWELL
+- ADR-017: keendwell.com splash vs dev.keendwell.com лендинг - разделение
 
 ---
 
