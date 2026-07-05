@@ -1937,7 +1937,7 @@ function ContactModal({ isOpen, onClose }) {
     e.preventDefault();
     setStatus('sending');
     try {
-      const res = await fetch('https://book.daria.style/api/contact', {
+      const res = await fetch('https://book.ddl.lat/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method, ...form }),
